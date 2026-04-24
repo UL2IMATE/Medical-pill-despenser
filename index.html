@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="
+https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
+"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>medical-despenser</title>
+  </head>
+  <body>
+    <div class="container-fluid ">
+      <div class="row">
+        <nav class="col-md-3 col-lg-2 d-md-block side-bar side-bar1">
+          <div>
+            <h3><i class="fas fa-capsules"></i> Pill reminder</h3>
+            <hr />
+            <a href="#" class="active-hover">
+              <i
+                class="fas fa-home"
+                style="font-size: 25px; margin-right: 8px"
+              ></i
+              >Dashboard</a
+            >
+            <a href="/User.html" class="active-hover">
+              <i
+                class="fas fa-user"
+                style="font-size: 25px; margin-right: 8px"
+              ></i
+              >Users</a
+            >
+            <a href="/medic.html"  class="active-hover"
+              ><i
+                class="fas fa-pills"
+                style="font-size: 25px; margin-right: 8px"
+              ></i
+              >Assing medication</a
+            >
+            <a href="#" class="active-hover"
+              ><i
+                class="fas fa-clipboard-check"
+                style="font-size: 25px; margin-right: 8px"
+              ></i
+              >View logs</a
+            >
+          </div>
+        </nav>
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 main-page">
+          <h1 class="mb-4 text-center text-md-start">
+            Welcome, <span class="fw-bold">Admin!</span>
+
+            <div class="float-md-end rounded-3 px-md-3 py-2  px-0 mt-md-0  mt-3   float-sm-start  bg-white text-body-secondary shadow-sm fs-5 fs-3-md"><i class="fa-regular fa-calendar c"></i> <span id="date" class="fw-bolder"></span></div>
+          
+          </h1>
+          <hr />
+          <div
+            class="container-fluid mb-3 d-flex gap-md-3 justify-content-center align-items-center gap-3 mb-md-0 mb-sm-4 flex-row flex-md-nowrap flex-wrap"
+          >
+            <div
+              class="card rounded-5 Patient dotted shadow-sm"
+              style="
+                height: 17rem !important;
+                /* border-color: #3e6aa9; */
+                /* border-style: dotted; */
+                border-width: 2.5px;
+              "
+            >
+              <i
+                class="fas fa-user-plus"
+                style="
+                  font-size: 70px;
+                  margin: auto;
+                  margin-top: 30px;
+                  color: #000000;
+                "
+              ></i>
+              <div class="card-body cursor">
+                <div class="card-title text-center">
+                  <h4>Create New User</h4>
+                </div>
+                <div class="card-text text-center lead m-auto card-contentt">
+                  <h5 class="lead" style="font-size: 20px">Add new patient</h5>
+                </div>
+                <a
+                  class="btn w-100 mt-2 py-1 fs-5 add-user"
+                  href="/User.html"
+                  style="background-color: #3e6aa9; color: white"
+                >
+                  + Add User
+                </a>
+              </div>
+            </div>
+            <div
+              class="card rounded-5 Patient dotted shadow-sm"
+              style="
+                width: 25rem;
+                height: 20rem;
+                /* border-color: #3e6aa9; */
+                /* border-style: dotted; */
+                border-width: 2.5px;
+              "
+            >
+              <i
+                class="fas fa-notes-medical"
+                style="
+                  font-size: 70px;
+                  margin: auto;
+                  margin-top: 35px;
+                  color: #68a474;
+                "
+              ></i>
+              <div class="card-body cursor">
+                <div class="card-title text-center">
+                  <h4 class="medications">Medications Assigned</h4>
+                </div>
+                <div
+                  class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
+                >
+                  10
+                </div>
+                <p class="lead fs-5 text-center mt-1 card-content">in total</p>
+              </div>
+            </div>
+            <div
+              class="card rounded-5 Patient dotted shadow-sm"
+              style="
+                width: 25rem;
+                height: 20rem;
+                /* border-color: #3e6aa9; */
+                /* border-style: dotted; */
+                border-width: 2.5px;
+              "
+            >
+              <i
+                class="fas fa-check-circle"
+                style="
+                  font-size: 70px;
+                  margin: auto;
+                  margin-top: 35px;
+                  color: #07fe38;
+                "
+              ></i>
+              <div class="card-body cursor">
+                <div class="card-title text-center">
+                  <h4>Doses Taken</h4>
+                </div>
+                <div
+                  class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
+                >
+                  4/8
+                </div>
+                <p class="lead fs-5 text-center mt-1 card-content">Today</p>
+              </div>
+            </div>
+            <div
+              class="card rounded-5 Patient dotted shadow-sm"
+              style="
+                width: 25rem;
+                height: 20rem;
+                /* border-color: #3e6aa9; */
+                /* border-style: dotted; */
+                border-width: 2.5px;
+              "
+            >
+              <i
+                class="fas fa-exclamation-circle"
+                style="
+                  font-size: 70px;
+                  margin: auto;
+                  margin-top: 35px;
+                  color: #623ea9;
+                "
+              ></i>
+              <div class="card-body cursor">
+                <div class="card-title text-center">
+                  <h4>Missed Doses</h4>
+                </div>
+                <div
+                  class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
+                >
+                  4/8
+                </div>
+                <p class="lead fs-5 text-center mt-1 card-content">Today</p>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid d-flex justify-content-center mt-3">
+            <div
+              class="row gap-md-0 gap-3 w-100 justify-content-between d-flex flex-md-row flex-column"
+            >
+            <div class="col-md-6 col-12">
+  <div class="card rounded-4 border-0 shadow-sm" style="background-color: #f0f3ff; min-height: 27rem">
+    <h2 class="p-4 fs-4 fw-bolder mb-0">
+      <i class="fa-solid fa-diagram-next fs-3 me-2 text-primary"></i>Dispenser Cups Overview
+      
+    </h2>
+
+    <div class="card-body px-4 pb-4">
+      <div class="row g-3 ">
+        
+        <div class="col-lg-3 col-md-12">
+          <div class="card h-100 rounded-4 border-success border-2 shadow-sm" style="background-color: rgba(25, 135, 84, 0.05);">
+            <div class="card-body d-flex flex-column text-center p-3">
+              <div class="mb-3">
+                <i class="bi bi-1-circle-fill text-primary fs-1"></i>
+                <h3 class="fw-bolder mt-2">Cup 1</h3>
+              </div>
+              <span class="badge rounded-pill text-bg-success w-75 mx-auto py-2 mb-3">
+                <i class="fa-solid fa-check me-1"></i>Filled
+              </span>
+              <h5 class="fw-bold mb-1">Aspirin</h5>
+              <div class="mt-auto pt-3">
+                <small class="text-muted d-block">Next dose:</small>
+                <span class="fw-semibold fs-5"><i class="fa-regular fa-clock text-success me-1"></i>8:00 AM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-12">
+          <div class="card h-100 rounded-4 border-warning border-2 shadow-sm" style="background-color: rgba(255, 193, 7, 0.05);">
+            <div class="card-body d-flex flex-column text-center p-3">
+              <div class="mb-3">
+                <i class="bi bi-2-circle-fill text-warning fs-1"></i>
+                <h3 class="fw-bolder mt-2">Cup 2</h3>
+              </div>
+              <span class="badge rounded-pill text-bg-success w-75 mx-auto py-2 mb-3">
+                <i class="fa-solid fa-check me-1"></i>Filled
+              </span>
+              <h5 class="fw-bold mb-1">Aspirin</h5>
+              <div class="mt-auto pt-3">
+                <small class="text-muted d-block">Next dose:</small>
+                <span class="fw-semibold fs-5"><i class="fa-regular fa-clock text-success me-1"></i>8:00 AM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-12">
+          <div class="card h-100 rounded-4 border-secondary border-dashed border-2 shadow-sm" style="background-color: #fff; border-style: dashed !important;">
+            <div class="card-body d-flex flex-column text-center p-3">
+              <div class="mb-3">
+                <i class="bi bi-3-circle-fill text-secondary fs-1 opacity-50"></i>
+                <h3 class="fw-bolder mt-2 text-secondary">Cup 3</h3>
+              </div>
+              <span class="badge rounded-pill text-bg-secondary w-75 mx-auto py-2 mb-3">
+                Empty
+              </span>
+              <p class="small text-muted mb-0">No medications assigned</p>
+              <div class="mt-auto pt-3">
+                <a href="#" class="btn btn-sm btn-outline-primary fw-bold rounded-pill px-3">
+                  + Assign Medication
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-12">
+          <div class="card h-100 rounded-4 border-secondary border-dashed border-2 shadow-sm" style="background-color: #fff; border-style: dashed !important;">
+            <div class="card-body d-flex flex-column text-center p-3">
+              <div class="mb-3">
+                <i class="bi bi-4-circle-fill text-secondary fs-1 opacity-50"></i>
+                <h3 class="fw-bolder mt-2 text-secondary">Cup 4</h3>
+              </div>
+              <span class="badge rounded-pill text-bg-secondary w-75 mx-auto py-2 mb-3">
+                Empty
+              </span>
+              <p class="small text-muted mb-0">No medications assigned</p>
+              <div class="mt-auto pt-3">
+                <a href="#" class="btn btn-sm btn-outline-primary fw-bold rounded-pill px-3">
+                  + Assign Medication
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+              <div class=" col-md-6 col-12 border-3 border-1">
+  <div class="card  rounded-4 border-0 " style="background-color: #f0f3ff ; ">
+    <div class="card-header border-0 rounded-3 p-4 d-flex justify-content-between align-items-center" style="background-color: #f0f3ff">
+      <div>
+        <h3 class="fs-4 fw-bolder mb-1">
+          <i class="fas fa-calendar fs-3 text-primary me-2"></i>Today's Schedule
+        </h3>
+        <span class="fs-6 ">Scheduled doses for today</span>
+      </div>
+      <a href="#" class="fs-6 text-primary fw-bold text-decoration-none">
+        View Full Schedule <i class="fa-solid fa-arrow-right ms-1"></i>
+      </a>
+    </div>
+
+    <div class="card-body p-1 p-md-3  " style="background-color: #f0f3ff">
+      <ul class="list-group overflow-auto  rounded-3 shadow-sm text-start text-md-center" style="max-height: 18.5rem">
+        
+        <li class="list-group-item d-flex align-items-center p-4 border">
+          <div class="badge text-bg-primary p-0 p-md-1 fs-5 fw-normal" style="min-width: 100px;">
+            8:00 am
+          </div>
+          <div class="ms-3 me-3">
+            <p class="mb-0 fs-5 fw-bolder text-dark text-center">Abdelaziz</p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 1 tablet</li>
+            </ul>
+          </div>
+          <div class="status ms-auto badge text-success bg-success-subtle border border-success-subtle p-2 px-2 ">
+            <i class="fa-solid fa-check me-1"></i> Taken
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-4 border">
+          <div class="badge text-bg-primary p-0 p-md-1 fs-5 fw-normal" style="min-width: 100px;">
+            8:00 am
+          </div>
+          <div class="ms-3 me-3">
+            <p class="mb-0 fs-5 fw-bolder text-dark text-center">Abdelaziz</p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 1 tablet</li>
+            </ul>
+          </div>
+          <div class="status ms-auto badge text-success bg-success-subtle border border-success-subtle p-2 px-2 ">
+            <i class="fa-solid fa-check me-1"></i> Taken
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-4 border">
+          <div class="badge text-bg-primary p-0 p-md-1 fs-5 fw-normal" style="min-width: 100px;">
+            8:00 am
+          </div>
+          <div class="ms-3 me-3">
+            <p class="mb-0 fs-5 fw-bolder text-dark text-center">Abdelaziz</p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 1 tablet</li>
+            </ul>
+          </div>
+          <div class="status ms-auto badge text-success bg-success-subtle border border-success-subtle p-2 px-2 ">
+            <i class="fa-solid fa-check me-1"></i> Taken
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-4 border">
+          <div class="badge text-bg-primary p-0 p-md-1 fs-5 fw-normal" style="min-width: 100px;">
+            8:00 am
+          </div>
+          <div class="ms-3 me-3">
+            <p class="mb-0 fs-5 fw-bolder text-dark text-center">Abdelaziz</p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 1 tablet</li>
+            </ul>
+          </div>
+          <div class="status ms-auto badge text-success bg-success-subtle border border-success-subtle p-2 px-2 ">
+            <i class="fa-solid fa-check me-1"></i> Taken
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-4 border">
+          <div class="badge text-bg-primary p-0 p-md-1 fs-5 fw-normal" style="min-width: 100px;">
+            8:00 am
+          </div>
+          <div class="ms-3 me-3">
+            <p class="mb-0 fs-5 fw-bolder text-dark text-center">Abdelaziz</p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 1 tablet</li>
+            </ul>
+          </div>
+          <div class="status ms-auto badge text-success bg-success-subtle border border-success-subtle p-2 px-2 ">
+            <i class="fa-solid fa-check me-1"></i> Taken
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-4 border">
+          <div class="badge text-bg-primary p-0 p-md-1 fs-5 fw-normal" style="min-width: 100px;">
+            8:00 am
+          </div>
+          <div class="ms-3 me-3">
+            <p class="mb-0 fs-5 fw-bolder text-dark text-center">Abdelaziz</p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 1 tablet</li>
+            </ul>
+          </div>
+          <div class="status ms-auto badge text-success bg-success-subtle border border-success-subtle p-2 px-2 ">
+            <i class="fa-solid fa-check me-1"></i> Taken
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-4 border">
+          <div class="badge text-bg-primary p-0 p-md-1 fs-5 fw-normal" style="min-width: 100px;">
+            8:00 am
+          </div>
+          <div class="ms-3 me-3">
+            <p class="mb-0 fs-5 fw-bolder text-dark text-center">Abdelaziz</p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 1 tablet</li>
+            </ul>
+          </div>
+          <div class="status ms-auto badge text-success bg-success-subtle border border-success-subtle p-2 px-2 ">
+            <i class="fa-solid fa-check me-1"></i> Taken
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-4 border">
+          <div class="badge text-bg-primary p-0 p-md-1 fs-5 fw-normal" style="min-width: 100px;">
+            8:00 am
+          </div>
+          <div class="ms-3 me-3">
+            <p class="mb-0 fs-5 fw-bolder text-dark text-center">Abdelaziz</p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 1 tablet</li>
+            </ul>
+          </div>
+          <div class="status ms-auto badge text-success bg-success-subtle border border-success-subtle p-2 px-2 ">
+            <i class="fa-solid fa-check me-1"></i> Taken
+          </div>
+        </li>
+     
+
+  
+      
+   
+       
+
+      </ul>
+    </div>
+  </div>
+</div>
+              <div class="col-12 border-3 border-1 mt-4">
+  <div class="card  rounded-4 border-0 " style="background-color: #f0f3ff ; ">
+    <div class="card-header border-0 rounded-3 p-4 d-flex justify-content-between align-items-center" style="background-color: #f0f3ff">
+      <div>
+        <h3 class="fs-4 fw-bolder mb-1">
+        <i class="fa-regular fa-clock text-primary me-2"></i>Recent log entries
+        </h3>
+        <span class="fs-6 ">Latest system activites and dose confirmations</span>
+      </div>
+      <a href="#" class="fs-6 text-primary fw-bold text-decoration-none">
+        View all logs <i class="fa-solid fa-arrow-right ms-1"></i>
+      </a>
+    </div>
+
+    <div class="card-body p-1 p-md-3  " style="background-color: #f0f3ff">
+      <ul class="list-group overflow-auto rounded-3 shadow-sm" style="max-height: 30rem">
+        
+        <li class="list-group-item d-flex align-items-center p-3 ">
+          <div class="text-success fs-1 fw-normal ms-3" style="min-width: 100px;">
+           <i class="fa-regular fa-circle-check"></i>
+          </div>
+          <div class="ms-1 text-center  text-md-start">
+            <p class="mb-0 fs-6 fw-bold text-dark">Abdelaziz <span class="fw-bolder text-success fs-6">took thier doses</span></p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder text-center  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 8:00am</li>
+            </ul>
+          </div>
+          <div class=" ms-auto text-muted p-2 px-3 fs-6 fw-semibold text-center  text-md-start">
+             1 minute ago
+          </div>
+        </li>
+        
+        <li class="list-group-item d-flex align-items-center p-3 ">
+          <div class="text-danger fs-1 fw-normal ms-3" style="min-width: 100px;">
+          <i class="fa-regular fa-circle-xmark"></i>
+          </div>
+          <div class="ms-1 text-center  text-md-start">
+            <p class="mb-0 fs-6 fw-bold text-dark text-center  text-md-start">Abdelaziz <span class="fw-bolder text-danger fs-6">missed his doses</span></p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder"><i class="fa-solid fa-pills me-1"></i> Aspirin - 8:00am</li>
+            </ul>
+          </div>
+          <div class=" ms-auto text-muted p-2 px-3 fs-6 fw-semibold text-center  text-md-start">
+             1 minute ago
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-3 ">
+          <div class="text-warning fs-1 fw-normal ms-3 " style="min-width: 100px;">
+         <i class="fa-regular fa-bell"></i>
+          </div>
+          <div class="ms-1 text-center  text-md-start">
+            <p class="mb-0 fs-6 fw-bold text-dark ">System alert: <span class="fw-bolder text-warning fs-6 text-center">Cup 3 is empty</span></p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder text-center  text-md-start ">Please assign medication</li>
+            </ul>
+          </div>
+          <div class=" ms-auto text-muted p-2 px-3 fs-6 fw-semibold text-center">
+             1 minute ago
+          </div>
+        </li>
+
+       
+   
+   
+       
+
+      </ul>
+    </div>
+  </div>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+    <!-- <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCfFfJyM9jYd4FlNwHSt6pyqZFR87zAxpQ",
+        authDomain: "crud-cb6fb.firebaseapp.com",
+        databaseURL:
+          "https://crud-cb6fb-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "crud-cb6fb",
+        storageBucket: "crud-cb6fb.firebasestorage.app",
+        messagingSenderId: "845920708480",
+        appId: "1:845920708480:web:3eafe4605da974ce188365",
+        measurementId: "G-7XMMBE9T8P",
+      };
+      import {
+        getDatabase,
+        ref,
+        set,
+        get,
+      } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-database.js";
+
+      
+
+      var ID = document.getElementById("enterId");
+      var name = document.getElementById("enterName");
+      var age = document.getElementById("enterAge");
+      var findID = document.getElementById("findID");
+      var findName = document.getElementById("findName");
+      var findAge = document.getElementById("findAge");
+      var Status = document.getElementById("Status");
+
+      var insertBtn = document.getElementById("insert");
+      var insertUpdate = document.getElementById("update");
+      var findBtn = document.getElementById("find");
+      var removeBtn = document.getElementById("remove");
+
+      function showStatus(statusValue) {
+        let pending = document.getElementById("pendingg");
+        let ok = document.getElementById("ok");
+        if (statusValue.value == "true" || statusValue.value == true) {
+          pending.style.display = "block";
+          ok.style.display = "block";
+        } else if (statusValue.value == "false" || statusValue.value == false) {
+          pending.style.display = "block";
+          ok.style.display = "block";
+        }
+      }
+
+      function insertData() {
+        set(ref(db, "People/" + ID.value), {
+          Name: name.value,
+          Id: ID.value,
+          Age: age.value,
+        })
+          .then(() => {
+            alert("Data added successfully!");
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      }
+
+      function insertStatus() {
+        set(ref(db, "People/" + Status), {
+          Status: Staus.value,
+        })
+          .then((Status) => {
+            showStatus(Status);
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      }
+
+      function findData() {
+        const dbref = ref(db);
+        get(child(dbref, "People/" + findID.value))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              findName.innerHTML = "Name: " + snapshot.val().Name;
+              findAge.innerHTML = "Age: " + snapshot.val().Age;
+            } else {
+              alert("No data found");
+            }
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+      function findDataRealtime() {
+        const userRef = ref(db, "People/" + findID.value);
+
+        onValue(userRef, (snapshot) => {
+          if (snapshot.exists()) {
+            findName.innerHTML = "Name: " + snapshot.val().Name;
+            findAge.innerHTML = "Age: " + snapshot.val().Age;
+          } else {
+            findName.innerHTML = "";
+            findAge.innerHTML = "";
+          }
+        });
+      }
+
+      function findDataRealtemp() {
+        const userRef = ref(db, "People/01");
+        let deg = document.querySelector("#Total-pills");
+        // deg.style.fontSize = "20px";
+
+        onValue(userRef, (snapshot) => {
+          if (snapshot.val) {
+            deg.textContent = snapshot.val().Temp;
+          } else {
+            h1.innerHTML = "";
+          }
+        });
+      }
+
+      findDataRealtemp();
+
+      function updateData() {
+        update(ref(db, "People/" + ID.value), {
+          Name: name.value,
+          Age: age.value,
+          Status: Status.value,
+        })
+          .then(() => {
+            alert("Data updated successfully!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+
+      function removdDate() {
+        remove(ref(db, "People/" + ID.value))
+          .then(() => {
+            alert("Data removed!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+
+      // findID.addEventListener("input", findDataRealtime);
+      insertBtn.addEventListener("click", insertData);
+      insertUpdate.addEventListener("click", updateData);
+      findBtn.addEventListener("click", findData);
+      removeBtn.addEventListener("click", removdDate);
+      const analytics = getAnalytics(app);
+    </script> -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
