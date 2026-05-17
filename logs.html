@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="
+https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
+"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Condensed:ital,wght@0,100;1,100&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Share+Tech&family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Condensed:ital,wght@0,100;1,100&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Share+Tech&display=swap" rel="stylesheet">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>medical-despenser</title>
+  </head>
+  <body>
+    <div class="container-fluid ">
+      <div class="row">
+        <nav class="col-md-3 col-lg-2 d-md-block side-bar side-bar1">
+          <div>
+            <h3><i class="fas fa-capsules"></i> Pill reminder</h3>
+            <hr />
+            <a href="index.html" class="active-hover">
+              <i
+                class="fas fa-home"
+                style="font-size: 25px; margin-right: 8px"
+              ></i
+              >Dashboard</a
+            >
+            <a href="user.html" class="active-hover">
+              <i
+                class="fas fa-user"
+                style="font-size: 25px; margin-right: 8px"
+              ></i
+              >Users</a
+            >
+            <a href="medic.html"  class="active-hover"
+              ><i
+                class="fas fa-pills"
+                style="font-size: 25px; margin-right: 8px"
+              ></i
+              >Assing medication</a
+            >
+            <a href="#" class="active-hover"
+              ><i
+                class="fas fa-clipboard-check"
+                style="font-size: 25px; margin-right: 8px"
+              ></i
+              >View logs</a
+            >
+          </div>
+        </nav>
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 main-page">
+           <h1 class="mb-4 text-center text-md-start fw-bold">
+            View Logs
+                        <div class="float-md-end rounded-3 px-md-3 py-3  px-0 mt-md-0  mt-3   float-sm-start  bg-white text-body-secondary shadow-sm fs-5 fs-3-md"><i class="fa-regular fa-calendar c"></i> <span id="date" class="fw-bolder"></span></div>
+
+            <p class="fs-5 mt-3 fw-lighter">Track all activites and events in your system.</p>
+          </h1>
+          <hr />
+          <div
+            class="container-fluid mb-3 d-flex gap-md-3 justify-content-center align-items-center gap-3 mb-md-0 mb-sm-4 flex-row flex-md-nowrap flex-wrap"
+          >
+          <div
+              class="card rounded-5 Patient dotted shadow-sm"
+              style="
+                width: 25rem;
+                height: 20rem;
+                /* border-color: #3e6aa9; */
+                /* border-style: dotted; */
+                border-width: 2.5px;
+              "
+            >
+              <i
+                class="fas fa-check-circle"
+                style="
+                  font-size: 70px;
+                  margin: auto;
+                  margin-top: 35px;
+                  color: #10a535;
+                "
+              ></i>
+              <div class="card-body cursor">
+                <div class="card-title text-center">
+                  <h4>Doses Taken</h4>
+                </div>
+                <div
+                  class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
+                >
+                  4/8
+                </div>
+                <p class="lead fs-5 text-center mt-1 card-content">Today</p>
+              </div>
+            </div>
+             <div
+              class="card rounded-5 Patient dotted shadow-sm"
+              style="
+                width: 25rem;
+                height: 20rem;
+                /* border-color: #3e6aa9; */
+                /* border-style: dotted; */
+                border-width: 2.5px;
+              "
+            >
+              <i
+                class="fas fa-exclamation-circle"
+                style="
+                  font-size: 70px;
+                  margin: auto;
+                  margin-top: 35px;
+                  color: #d80303;
+                "
+              ></i>
+              <div class="card-body cursor">
+                <div class="card-title text-center">
+                  <h4>Missed Doses</h4>
+                </div>
+                <div
+                  class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
+                >
+                  4/8
+                </div>
+                <p class="lead fs-5 text-center mt-1 card-content">Today</p>
+              </div>
+            </div>
+            <div
+              class="card rounded-5 Patient dotted shadow-sm"
+              style="
+                width: 25rem;
+                height: 20rem;
+                /* border-color: #3e6aa9; */
+                /* border-style: dotted; */
+                border-width: 2.5px;
+              "
+            >
+              <i
+                class="fa-solid fa-bell"
+                style="
+                  font-size: 70px;
+                  margin: auto;
+                  margin-top: 35px;
+                  color: #623ea9;
+                "
+              ></i>
+              <div class="card-body cursor">
+                <div class="card-title text-center">
+                  <h4 class="medications">Alerts</h4>
+                </div>
+                <div
+                  class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
+                >
+                  10
+                </div>
+                <p class="lead fs-5 text-center mt-1 card-content">today    </p>
+              </div>
+            </div>
+            <div
+              class="card rounded-5 Patient dotted shadow-sm"
+              style="
+                width: 25rem;
+                height: 20rem;
+                /* border-color: #3e6aa9; */
+                /* border-style: dotted; */
+                border-width: 2.5px;
+              "
+            >
+              <i
+                class="fa-solid fa-clipboard-list"
+                style="
+                  font-size: 70px;
+                  margin: auto;
+                  margin-top: 35px;
+                  color: #018aca;
+                "
+              ></i>
+              <div class="card-body cursor">
+                <div class="card-title text-center">
+                  <h4 class="medications">Total logs</h4>
+                </div>
+                <div
+                  class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
+                >
+                  128
+                </div>
+                <p class="lead fs-5 text-center mt-1 card-content">All time</p>
+              </div>
+            </div>
+            
+           
+          </div>
+
+          <div class="col-12 border-3 rounded-3  mt-4 shadow-sm" style="background-color: #ffffff ;" >
+            
+           
+            <div class="d-flex align-items-center justify-content-between">
+                <div class=" p-1 ">
+                    <select value="" class="form-select w-auto text-start fw-bold mx-5" style="padding: 10px 60px;">
+                        <option name="All" id="">All</option>
+                        <option name="Taken" id="">Taken</option>
+                        <option name="Missed" id="">Missed</option>
+                        <option name="Alerts" id="">Alerts</option>
+                    </select>
+                </div>
+                <div class=" p-3 ">
+                    <input type="search" name="search" id="search" placeholder="Search logs" class="w-100 form-check-input  py-3 px-5 rounded-3 border-2">
+                </div>
+            </div>
+           
+        </div>
+
+                
+        <!-- <div class="col-12 border-3 border-1  rounded-3 mt-4"> 
+  <div class="card  rounded-4 border-0 " style="background-color: #ffffff ; ">
+    <div class="card-header border-0 rounded-3 p-4 d-flex justify-content-between align-items-center" style="background-color: #ffffff">
+      <div>
+        <h3 class="fs-6 fw-bolder">
+      <i class="fa-solid fa-list me-1"></i> Log (Latest First)
+        </h3>
+      </div>
+      <p href="#" class="fs-6 text-primary fw-bold text-decoration-none">
+      Total logs: 24
+      </p>
+    </div>
+
+    <div class="card-body p-1 p-md-3  " style="background-color: #ffffff">
+      <ul class="list-group overflow-auto rounded-3 shadow-sm" style="max-height: 30rem">
+        
+        <li class="list-group-item d-flex align-items-center p-3 ">
+          <div class="text-success fs-1 fw-normal ms-3" style="min-width: 100px;">
+           <i class="fa-regular fa-circle-check"></i>
+          </div>
+          <div class="ms-1 text-center  text-md-start">
+            <p class="mb-0 fs-6 fw-bold text-dark">Abdelaziz <span class="fw-bolder text-success fs-6">took thier doses</span></p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder text-center  text-md-start"><i class="fa-solid fa-pills me-1"></i> Aspirin - 8:00am</li>
+            </ul>
+          </div>
+          <div class=" ms-auto text-muted p-2 px-3 fs-6 fw-semibold text-center  text-md-start">
+             1 minute ago
+          </div>
+        </li>
+        
+        <li class="list-group-item d-flex align-items-center p-3 ">
+          <div class="text-danger fs-1 fw-normal ms-3" style="min-width: 100px;">
+          <i class="fa-regular fa-circle-xmark"></i>
+          </div>
+          <div class="ms-1 text-center  text-md-start">
+            <p class="mb-0 fs-6 fw-bold text-dark text-center  text-md-start">Abdelaziz <span class="fw-bolder text-danger fs-6">missed his doses</span></p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder"><i class="fa-solid fa-pills me-1"></i> Aspirin - 8:00am</li>
+            </ul>
+          </div>
+          <div class=" ms-auto text-muted p-2 px-3 fs-6 fw-semibold text-center  text-md-start">
+             1 minute ago
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center p-3 ">
+          <div class="text-warning fs-1 fw-normal ms-3 " style="min-width: 100px;">
+         <i class="fa-regular fa-bell"></i>
+          </div>
+          <div class="ms-1 text-center  text-md-start">
+            <p class="mb-0 fs-6 fw-bold text-dark ">System alert: <span class="fw-bolder text-warning fs-6 text-center">Cup 3 is empty</span></p>
+            <ul class="list-unstyled mb-0 text-muted small">
+              <li class="fw-bolder text-center  text-md-start ">Please assign medication</li>
+            </ul>
+          </div>
+          <div class=" ms-auto text-muted p-2 px-3 fs-6 fw-semibold text-center">
+             1 minute ago
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+
+</div>  -->
+        <div class="col-12 border-3 border-1  rounded-3 mt-4"> 
+  <div class="card  rounded-4 border-0 " style="background-color: #ffffff ; ">
+    <div class="card-header border-0 rounded-3 p-4 d-flex justify-content-between align-items-center" style="background-color: #ffffff">
+      <div>
+        <h3 class="fs-5 fw-bolder">
+      <i class="fa-solid fa-list me-1"></i> Activity Logs
+        </h3>
+      </div>
+      <p id="total-logs" href="#" class="fs-6 text-primary fw-bold text-decoration-none">
+      </p>
+    </div>
+
+    <div class="card-body p-1 p-md-3  " style="background-color: #ffffff">
+    <table class="table text-start table-striped" id="logsTable">
+  <thead class="bg-info">
+    <tr >
+      <th scope="col" data-column ="Time" data-order="desc" class="text-secondary">Time</th>
+      <th scope="col"data-column ="Type" data-order="desc" class="text-secondary">Type</th>
+      <th scope="col"data-column ="Cup" data-order="desc" class="text-secondary">Cup</th>
+      <th scope="col" data-column ="Medication" data-order="desc" class="text-secondary">Medication</th>
+      <th scope="col" data-column ="Scheduled" data-order="desc" class="text-secondary">Scheduled Time</th>
+    </tr>
+  </thead>
+  <tbody id="myTable">
+   
+  </tbody>
+  
+</table>
+     <div class="btn-group">
+
+       <button class="btn btn-light btn-outline-dark " id="exportPDF"><i class="fa-solid fa-file-export"></i> Export to PDF</button>
+       <button id="exportCSV" class="btn btn-light btn-outline-dark "><i class="fa-solid fa-file-csv"></i>Export CSV</button>
+
+
+
+     </div>
+
+    </div>
+
+   
+  </div>
+
+
+</div> 
+
+
+</div>
+        
+        
+      </div>
+
+     
+
+    </div>
+
+    <script src="/src/js/medic.js" type="module"></script>
+    <script src="/src/js/logs.js" type="module"></script>
+    <script type="module" src="/src/js/main.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <!-- <script src="/logs.js" type="module"></script> -->
+  
+    <!-- <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCfFfJyM9jYd4FlNwHSt6pyqZFR87zAxpQ",
+        authDomain: "crud-cb6fb.firebaseapp.com",
+        databaseURL:
+          "https://crud-cb6fb-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "crud-cb6fb",
+        storageBucket: "crud-cb6fb.firebasestorage.app",
+        messagingSenderId: "845920708480",
+        appId: "1:845920708480:web:3eafe4605da974ce188365",
+        measurementId: "G-7XMMBE9T8P",
+      };
+      import {
+        getDatabase,
+        ref,
+        set,
+        get,
+      } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-database.js";
+
+      
+
+      var ID = document.getElementById("enterId");
+      var name = document.getElementById("enterName");
+      var age = document.getElementById("enterAge");
+      var findID = document.getElementById("findID");
+      var findName = document.getElementById("findName");
+      var findAge = document.getElementById("findAge");
+      var Status = document.getElementById("Status");
+
+      var insertBtn = document.getElementById("insert");
+      var insertUpdate = document.getElementById("update");
+      var findBtn = document.getElementById("find");
+      var removeBtn = document.getElementById("remove");
+
+      function showStatus(statusValue) {
+        let pending = document.getElementById("pendingg");
+        let ok = document.getElementById("ok");
+        if (statusValue.value == "true" || statusValue.value == true) {
+          pending.style.display = "block";
+          ok.style.display = "block";
+        } else if (statusValue.value == "false" || statusValue.value == false) {
+          pending.style.display = "block";
+          ok.style.display = "block";
+        }
+      }
+
+      function insertData() {
+        set(ref(db, "People/" + ID.value), {
+          Name: name.value,
+          Id: ID.value,
+          Age: age.value,
+        })
+          .then(() => {
+            alert("Data added successfully!");
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      }
+
+      function insertStatus() {
+        set(ref(db, "People/" + Status), {
+          Status: Staus.value,
+        })
+          .then((Status) => {
+            showStatus(Status);
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      }
+
+      function findData() {
+        const dbref = ref(db);
+        get(child(dbref, "People/" + findID.value))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              findName.innerHTML = "Name: " + snapshot.val().Name;
+              findAge.innerHTML = "Age: " + snapshot.val().Age;
+            } else {
+              alert("No data found");
+            }
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+      function findDataRealtime() {
+        const userRef = ref(db, "People/" + findID.value);
+
+        onValue(userRef, (snapshot) => {
+          if (snapshot.exists()) {
+            findName.innerHTML = "Name: " + snapshot.val().Name;
+            findAge.innerHTML = "Age: " + snapshot.val().Age;
+          } else {
+            findName.innerHTML = "";
+            findAge.innerHTML = "";
+          }
+        });
+      }
+
+      function findDataRealtemp() {
+        const userRef = ref(db, "People/01");
+        let deg = document.querySelector("#Total-pills");
+        // deg.style.fontSize = "20px";
+
+        onValue(userRef, (snapshot) => {
+          if (snapshot.val) {
+            deg.textContent = snapshot.val().Temp;
+          } else {
+            h1.innerHTML = "";
+          }
+        });
+      }
+
+      findDataRealtemp();
+
+      function updateData() {
+        update(ref(db, "People/" + ID.value), {
+          Name: name.value,
+          Age: age.value,
+          Status: Status.value,
+        })
+          .then(() => {
+            alert("Data updated successfully!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+
+      function removdDate() {
+        remove(ref(db, "People/" + ID.value))
+          .then(() => {
+            alert("Data removed!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+
+      // findID.addEventListener("input", findDataRealtime);
+      insertBtn.addEventListener("click", insertData);
+      insertUpdate.addEventListener("click", updateData);
+      findBtn.addEventListener("click", findData);
+      removeBtn.addEventListener("click", removdDate);
+      const analytics = getAnalytics(app);
+    </script> -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

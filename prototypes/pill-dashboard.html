@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pill Dispenser Dashboard</title>
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden !important;
+        background: #eef3f8;
+        touch-action: manipulation;
+        user-select: none;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body,
+      #app {
+        overflow: hidden !important;
+      }
+
+      .pill-dashboard {
+        width: 100%;
+        height: 100vh;
+        max-width: 800px;
+        max-height: 480px;
+        overflow: hidden;
+        background: #eef3f8;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #0f172a;
+        padding: 5px;
+        margin: 0 auto;
+      }
+
+      .topbar {
+        height: 42px;
+        background: #ffffff;
+        padding: 6px 8px;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .menu-icon {
+        font-size: 1rem;
+        color: #475569;
+      }
+
+      .brand-text {
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 4px;
+        color: #1e293b;
+      }
+
+      .top-set-all-btn {
+        min-width: 112px;
+        height: 32px;
+        border: none;
+        border-radius: 7px;
+        background: #0f766e;
+        color: white;
+        font-size: 0.62rem;
+        font-weight: 800;
+      }
+
+      .overview-page {
+        height: calc(100% - 47px);
+        overflow: hidden;
+      }
+
+      .section-title {
+        height: 20px;
+        font-size: 0.82rem;
+        font-weight: 800;
+        margin: 0 0 5px;
+        display: flex;
+        align-items: center;
+      }
+
+      .cup-grid {
+        height: calc(100% - 25px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 7px;
+      }
+
+      .cup-card {
+        background: white;
+        border-radius: 14px;
+        padding: 7px;
+        cursor: pointer;
+        min-height: 0;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+      }
+
+      .cup-header {
+        height: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 3px;
+      }
+
+      .cup-name {
+        font-size: 0.72rem;
+        font-weight: 800;
+        max-width: 60%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .medication-label {
+        text-align: center;
+        font-size: 0.56rem;
+        height: 14px;
+        margin-bottom: 4px;
+        color: #475569;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .cup-badge {
+        padding: 3px 7px;
+        border-radius: 999px;
+        font-size: 0.5rem;
+        font-weight: 900;
+      }
+
+      .cup-badge.filled {
+        background: #dcfce7;
+        color: #15803d;
+      }
+
+      .cup-badge.low {
+        background: #fef3c7;
+        color: #b45309;
+      }
+
+      .cup-badge.empty {
+        background: #fee2e2;
+        color: #dc2626;
+      }
+
+      .cup-visual {
+        width: 42px;
+        height: 50px;
+        margin: 0 auto 4px;
+        border: 3px solid #94a3b8;
+        border-top: 6px solid #94a3b8;
+        border-radius: 0 0 14px 14px;
+        position: relative;
+        overflow: hidden;
+        background: #f8fafc;
+      }
+
+      .cup-fill {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+      .fill-filled {
+        background: linear-gradient(180deg, #86efac, #16a34a);
+      }
+
+      .fill-low {
+        background: linear-gradient(180deg, #fde68a, #f59e0b);
+      }
+
+      .fill-empty {
+        background: linear-gradient(180deg, #fecaca, #ef4444);
+      }
+
+      .cup-stock {
+        height: 19px;
+        text-align: center;
+        font-size: 0.86rem;
+        font-weight: 900;
+        line-height: 19px;
+      }
+
+      .cup-stock-label {
+        height: 12px;
+        text-align: center;
+        font-size: 0.55rem;
+        color: #64748b;
+        margin-bottom: 4px;
+      }
+
+      .cup-time-box {
+        height: 38px;
+        background: #f8fbff;
+        border-radius: 9px;
+        padding: 3px;
+        text-align: center;
+      }
+
+      .cup-time-box small {
+        display: block;
+        font-size: 0.54rem;
+        color: #64748b;
+      }
+
+      .cup-time-box strong {
+        font-size: 0.72rem;
+      }
+
+      .details-page {
+        width: 100%;
+        height: calc(100% - 47px);
+        background: #f8fbff;
+        overflow: hidden;
+        padding: 7px;
+      }
+
+      .details-header {
+        height: 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .details-header h3 {
+        margin: 0;
+        font-size: 0.76rem;
+        font-weight: 900;
+      }
+
+      .details-header p {
+        margin: 6px 0 0;
+        font-size: 0.64rem;
+        color: #64748b;
+        font-weight: 700;
+      }
+
+      .back-btn {
+        width: 70px;
+        height: 40px;
+        border: none;
+        border-radius: 8px;
+        background: #e2e8f0;
+        color: #0f172a;
+        font-size: 0.68rem;
+        font-weight: 900;
+      }
+
+      .details-content {
+        height: calc(100% - 48px);
+        display: grid;
+        grid-template-rows: 78px 112px 1fr;
+        gap: 7px;
+      }
+
+      .control-section label,
+      .time-control label {
+        display: block;
+        font-size: 0.66rem;
+        font-weight: 900;
+        margin-bottom: 3px;
+      }
+
+      .pills-control {
+        display: grid;
+        grid-template-columns: 135px 1fr 135px;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .pill-step-btn {
+        height: 54px;
+        border: none;
+        border-radius: 9px;
+        background: #e2e8f0;
+        color: #0f172a;
+        font-size: 1.45rem;
+        font-weight: 900;
+      }
+
+      .pill-value {
+        height: 54px;
+        border-radius: 9px;
+        background: #ffffff;
+        border: 1px solid #dbe4ee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.05rem;
+        font-weight: 900;
+      }
+
+      .time-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .time-touch-row {
+        display: grid;
+        grid-template-columns: 70px 1fr 70px;
+        gap: 8px;
+        align-items: stretch;
+      }
+
+      .time-display {
+        height: 82px;
+        border-radius: 10px;
+        background: #ffffff;
+        border: 1px solid #dbe4ee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        font-weight: 900;
+      }
+
+      .time-side-btn {
+        height: 82px;
+        border: none;
+        border-radius: 9px;
+        background: #e2e8f0;
+        color: #0f172a;
+        font-size: 1.35rem;
+        font-weight: 900;
+      }
+
+      .details-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        width: 100%;
+        align-self: end;
+      }
+
+      .save-btn,
+      .clear-btn {
+        height: 58px;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 0.82rem;
+        font-weight: 900;
+      }
+
+      .save-btn {
+        background: #2563eb;
+      }
+
+      .clear-btn {
+        background: #dc2626;
+      }
+
+      button {
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+      }
+
+      button:active,
+      .cup-card:active {
+        transform: scale(0.98);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="pill-dashboard">
+      <div class="topbar">
+        <div class="brand">
+          <span class="menu-icon">☰</span>
+          <span class="brand-text">THE ENGINEERS</span>
+        </div>
+
+        <button type="button" class="top-set-all-btn" id="setAllBtn">
+          Set All Cups
+        </button>
+      </div>
+
+      <div id="pageContainer"></div>
+    </div>
+
+    <script>
+      let selectedCup = null;
+      let userName = "";
+      const maxCupGrams = 100;
+      const lowThresholdGrams = 20;
+      let isSending = false;
+
+      let cups = [
+        {
+          id: 1,
+          medicationName: "",
+          pillsPerDose: 1,
+          hour: "",
+          minute: "",
+          grams: 0,
+        },
+        {
+          id: 2,
+          medicationName: "",
+          pillsPerDose: 1,
+          hour: "",
+          minute: "",
+          grams: 0,
+        },
+        {
+          id: 3,
+          medicationName: "",
+          pillsPerDose: 1,
+          hour: "",
+          minute: "",
+          grams: 0,
+        },
+        {
+          id: 4,
+          medicationName: "",
+          pillsPerDose: 1,
+          hour: "",
+          minute: "",
+          grams: 0,
+        },
+      ];
+
+      const pageContainer = document.getElementById("pageContainer");
+      const setAllBtn = document.getElementById("setAllBtn");
+
+      function currentCup() {
+        return cups.find((cup) => cup.id === selectedCup) || null;
+      }
+
+      function pad2(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function normalizeGrams(value) {
+        const grams = Number(value);
+        if (isNaN(grams) || grams < 0) return 0;
+        return grams;
+      }
+
+      function formatTime(hour, minute) {
+        if (hour === "" || minute === "") return "--:--";
+        return pad2(hour) + ":" + pad2(minute);
+      }
+
+      function getFillHeight(grams) {
+        const g = Math.max(0, Math.min(normalizeGrams(grams), maxCupGrams));
+        return (g / maxCupGrams) * 100 + "%";
+      }
+
+      function getCupState(grams) {
+        const g = normalizeGrams(grams);
+        if (g === 0) return "empty";
+        if (g <= lowThresholdGrams) return "low";
+        return "filled";
+      }
+
+      function getCupBadgeText(grams) {
+        const state = getCupState(grams);
+        if (state === "empty") return "EMPTY";
+        if (state === "low") return "LOW";
+        return "FILLED";
+      }
+
+      function saveToBrowser() {
+        localStorage.setItem(
+          "pillDispenserDashboardState",
+          JSON.stringify({
+            userName,
+            cups,
+          }),
+        );
+      }
+
+      function loadSavedData() {
+        const saved = localStorage.getItem("pillDispenserDashboardState");
+        if (!saved) return;
+
+        try {
+          const parsed = JSON.parse(saved);
+
+          if (parsed.userName) {
+            userName = parsed.userName;
+          }
+
+          if (Array.isArray(parsed.cups)) {
+            cups = cups.map((cup) => {
+              const savedCup = parsed.cups.find((c) => Number(c.id) === cup.id);
+              const mergedCup = savedCup ? { ...cup, ...savedCup } : cup;
+
+              if (!mergedCup.pillsPerDose || mergedCup.pillsPerDose < 1) {
+                mergedCup.pillsPerDose = 1;
+              }
+
+              return mergedCup;
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      function lockSending() {
+        if (isSending) return false;
+
+        isSending = true;
+
+        setTimeout(() => {
+          isSending = false;
+        }, 500);
+
+        return true;
+      }
+
+      function sendToNodeRed(message) {
+        console.log("Message output:", message);
+
+        // For a regular HTML file, there is no Node-RED this.send().
+        // Connect this part later to Firebase, MQTT over WebSocket, or fetch() to a Node-RED HTTP endpoint.
+      }
+
+      function renderOverviewPage() {
+        pageContainer.innerHTML = `
+        <div class="overview-page">
+          <div class="section-title">Cup Overview</div>
+          <div class="cup-grid">
+            ${cups
+              .map((cup) => {
+                const state = getCupState(cup.grams);
+                return `
+                <div class="cup-card" data-cup-id="${cup.id}">
+                  <div class="cup-header">
+                    <span class="cup-name">
+                      ${cup.medicationName ? cup.medicationName : "Cup " + cup.id}
+                    </span>
+                    <span class="cup-badge ${state}">
+                      ${getCupBadgeText(cup.grams)}
+                    </span>
+                  </div>
+
+                  <div class="medication-label">
+                    ${cup.medicationName ? cup.medicationName : "No medication assigned"}
+                  </div>
+
+                  <div class="cup-visual">
+                    <div class="cup-fill fill-${state}" style="height: ${getFillHeight(cup.grams)}"></div>
+                  </div>
+
+                  <div class="cup-stock">${normalizeGrams(cup.grams)} g</div>
+                  <div class="cup-stock-label">current weight</div>
+
+                  <div class="cup-time-box">
+                    <small>Next Dose</small>
+                    <strong>${formatTime(cup.hour, cup.minute)}</strong>
+                  </div>
+                </div>
+              `;
+              })
+              .join("")}
+          </div>
+        </div>
+      `;
+
+        document.querySelectorAll(".cup-card").forEach((card) => {
+          card.addEventListener("click", () =>
+            openCup(Number(card.dataset.cupId)),
+          );
+        });
+      }
+
+      function renderDetailsPage() {
+        const cup = currentCup();
+        if (!cup) return;
+
+        pageContainer.innerHTML = `
+        <div class="details-page">
+          <div class="details-header">
+            <div>
+              <h3>Cup ${cup.id} Settings</h3>
+              <p>${cup.medicationName ? cup.medicationName : "No medication assigned from admin yet"}</p>
+            </div>
+
+            <button type="button" class="back-btn" id="backBtn">Back</button>
+          </div>
+
+          <div class="details-content">
+            <div class="control-section">
+              <label>Pills to Dispense</label>
+              <div class="pills-control">
+                <button type="button" class="pill-step-btn" id="decreasePillsBtn">−</button>
+                <div class="pill-value">${cup.pillsPerDose || 1}</div>
+                <button type="button" class="pill-step-btn" id="increasePillsBtn">+</button>
+              </div>
+            </div>
+
+            <div class="time-grid">
+              <div class="time-control">
+                <label>Hour</label>
+                <div class="time-touch-row">
+                  <button type="button" class="time-side-btn" id="decreaseHourBtn">−</button>
+                  <div class="time-display">${cup.hour !== "" ? pad2(cup.hour) : "--"}</div>
+                  <button type="button" class="time-side-btn" id="increaseHourBtn">+</button>
+                </div>
+              </div>
+
+              <div class="time-control">
+                <label>Minute</label>
+                <div class="time-touch-row">
+                  <button type="button" class="time-side-btn" id="decreaseMinuteBtn">−</button>
+                  <div class="time-display">${cup.minute !== "" ? pad2(cup.minute) : "--"}</div>
+                  <button type="button" class="time-side-btn" id="increaseMinuteBtn">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="details-actions">
+              <button type="button" class="save-btn" id="saveCupBtn">Save Cup</button>
+              <button type="button" class="clear-btn" id="clearCupBtn">Clear Cup</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+        document.getElementById("backBtn").addEventListener("click", goBack);
+        document
+          .getElementById("decreasePillsBtn")
+          .addEventListener("click", decreasePills);
+        document
+          .getElementById("increasePillsBtn")
+          .addEventListener("click", increasePills);
+        document
+          .getElementById("decreaseHourBtn")
+          .addEventListener("click", decreaseHour);
+        document
+          .getElementById("increaseHourBtn")
+          .addEventListener("click", increaseHour);
+        document
+          .getElementById("decreaseMinuteBtn")
+          .addEventListener("click", decreaseMinute);
+        document
+          .getElementById("increaseMinuteBtn")
+          .addEventListener("click", increaseMinute);
+        document
+          .getElementById("saveCupBtn")
+          .addEventListener("click", saveCup);
+        document
+          .getElementById("clearCupBtn")
+          .addEventListener("click", clearCup);
+      }
+
+      function render() {
+        if (selectedCup === null) {
+          renderOverviewPage();
+        } else {
+          renderDetailsPage();
+        }
+      }
+
+      function openCup(id) {
+        selectedCup = id;
+
+        const cup = currentCup();
+        if (cup && (!cup.pillsPerDose || cup.pillsPerDose < 1)) {
+          cup.pillsPerDose = 1;
+        }
+
+        render();
+      }
+
+      function goBack() {
+        selectedCup = null;
+        render();
+      }
+
+      function increasePills() {
+        const cup = currentCup();
+        if (!cup) return;
+
+        let value = Number(cup.pillsPerDose || 1);
+        value++;
+        if (value > 99) value = 99;
+
+        cup.pillsPerDose = value;
+        saveToBrowser();
+        render();
+      }
+
+      function decreasePills() {
+        const cup = currentCup();
+        if (!cup) return;
+
+        let value = Number(cup.pillsPerDose || 1);
+        value--;
+        if (value < 1) value = 1;
+
+        cup.pillsPerDose = value;
+        saveToBrowser();
+        render();
+      }
+
+      function increaseHour() {
+        const cup = currentCup();
+        if (!cup) return;
+
+        let value = cup.hour === "" ? 0 : Number(cup.hour);
+        value++;
+        if (value > 23) value = 0;
+
+        cup.hour = pad2(value);
+        saveToBrowser();
+        render();
+      }
+
+      function decreaseHour() {
+        const cup = currentCup();
+        if (!cup) return;
+
+        let value = cup.hour === "" ? 0 : Number(cup.hour);
+        value--;
+        if (value < 0) value = 23;
+
+        cup.hour = pad2(value);
+        saveToBrowser();
+        render();
+      }
+
+      function increaseMinute() {
+        const cup = currentCup();
+        if (!cup) return;
+
+        let value = cup.minute === "" ? 0 : Number(cup.minute);
+        value += 5;
+        if (value > 59) value = 0;
+
+        cup.minute = pad2(value);
+        saveToBrowser();
+        render();
+      }
+
+      function decreaseMinute() {
+        const cup = currentCup();
+        if (!cup) return;
+
+        let value = cup.minute === "" ? 0 : Number(cup.minute);
+        value -= 5;
+        if (value < 0) value = 55;
+
+        cup.minute = pad2(value);
+        saveToBrowser();
+        render();
+      }
+
+      function saveCup() {
+        const cup = currentCup();
+        if (!cup) return;
+        if (!lockSending()) return;
+
+        saveToBrowser();
+
+        sendToNodeRed({
+          topic: "save_cup",
+          payload: {
+            userName,
+            cup: cup.id,
+            hour: Number(cup.hour),
+            minute: Number(cup.minute),
+            pills: Number(cup.pillsPerDose),
+            grams: Number(cup.grams || 0),
+          },
+        });
+      }
+
+      function setAllCups() {
+        if (!lockSending()) return;
+
+        saveToBrowser();
+
+        sendToNodeRed({
+          topic: "set_all_cups",
+          payload: {
+            userName,
+            schedules: cups.map((cup) => ({
+              cup: cup.id,
+              hour: Number(cup.hour),
+              minute: Number(cup.minute),
+              pills: Number(cup.pillsPerDose),
+              grams: Number(cup.grams || 0),
+            })),
+          },
+        });
+      }
+
+      function clearCup() {
+        const cup = currentCup();
+        if (!cup) return;
+
+        cup.pillsPerDose = 1;
+        cup.hour = "";
+        cup.minute = "";
+
+        saveToBrowser();
+        render();
+      }
+
+      function applyMedicationPayload(payload) {
+        const cupId = Number(
+          payload.cup || payload.cupId || payload.id || selectedCup,
+        );
+        const medicationName = String(
+          payload.medicationName ||
+            payload.Medication ||
+            payload.medication ||
+            payload.name ||
+            "",
+        );
+
+        if (!cupId || !medicationName) return;
+
+        const cup = cups.find((c) => c.id === cupId);
+
+        if (cup) {
+          cup.medicationName = medicationName;
+          saveToBrowser();
+          render();
+        }
+      }
+
+      // Optional helper for testing incoming data manually from browser console.
+      // Example: receiveMessage({ topic: "cup_grams", payload: { cup: 1, grams: 55 } })
+      function receiveMessage(msg) {
+        const topic = msg.topic;
+        const payload = msg.payload || {};
+
+        if (topic === "user_name") {
+          userName = String(
+            payload.userName || payload.name || msg.payload || "",
+          );
+          saveToBrowser();
+        }
+
+        if (topic === "cup_grams") {
+          const cupId = Number(payload.cup);
+          const cup = cups.find((c) => c.id === cupId);
+          if (cup) {
+            cup.grams = normalizeGrams(payload.grams);
+            saveToBrowser();
+          }
+        }
+
+        if (topic === "cup_medication" || topic === "assign_medication") {
+          applyMedicationPayload(payload);
+        }
+
+        if (topic === "all_cup_medications") {
+          cups.forEach((cup) => {
+            const key = "cup" + cup.id;
+            if (payload[key] !== undefined) {
+              cup.medicationName = String(
+                payload[key].medicationName ||
+                  payload[key].Medication ||
+                  payload[key].medication ||
+                  payload[key].name ||
+                  payload[key] ||
+                  "",
+              );
+            }
+          });
+          saveToBrowser();
+        }
+
+        if (
+          payload.Medication ||
+          payload.medicationName ||
+          payload.medication
+        ) {
+          applyMedicationPayload(payload);
+        }
+
+        if (topic === "full_schedule_from_firebase") {
+          if (payload.userName) {
+            userName = String(payload.userName);
+          }
+
+          if (payload.schedule) {
+            cups.forEach((cup) => {
+              const key = "cup" + cup.id;
+              const firebaseCup = payload.schedule[key];
+
+              if (firebaseCup) {
+                if (firebaseCup.hour !== undefined)
+                  cup.hour = pad2(firebaseCup.hour);
+                if (firebaseCup.minute !== undefined)
+                  cup.minute = pad2(firebaseCup.minute);
+                if (firebaseCup.pills !== undefined)
+                  cup.pillsPerDose = Number(firebaseCup.pills);
+                if (firebaseCup.grams !== undefined)
+                  cup.grams = normalizeGrams(firebaseCup.grams);
+
+                if (
+                  firebaseCup.medicationName !== undefined ||
+                  firebaseCup.Medication !== undefined ||
+                  firebaseCup.medication !== undefined ||
+                  firebaseCup.name !== undefined
+                ) {
+                  cup.medicationName = String(
+                    firebaseCup.medicationName ||
+                      firebaseCup.Medication ||
+                      firebaseCup.medication ||
+                      firebaseCup.name ||
+                      "",
+                  );
+                }
+              }
+            });
+          }
+
+          saveToBrowser();
+        }
+
+        render();
+      }
+
+      window.receiveMessage = receiveMessage;
+
+      setAllBtn.addEventListener("click", setAllCups);
+      loadSavedData();
+      render();
+    </script>
+  </body>
+</html>

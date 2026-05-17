@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+
+  
+}
+body
+{
+   font-family: "Quicksand", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+   height: 100%;
+   transition: smooth all  ;
+}
+.dotted 
+{
+   width: 30rem !important ;
+    height: 19rem !important;
+}
+.dotted a  {
+  /* padding: 13px 20px !important; */
+}
+.listStyle
+{
+  list-style-type:none; 
+}
+.side-bar1 {
+  color: azure;
+  
+  
+  padding: 20px 30px;
+  background: #354f77;
+}
+.side-bar {
+  color: azure;
+  
+  min-height: 120vh;
+  max-height: 100%;
+  padding: 20px 30px;
+  background: #354f77;
+}
+.side-bar h3 {
+  text-align: center;
+}
+.side-bar a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 20px 12px;
+  font-weight: 500;
+  gap: 0.75rem;
+  width: 100%;
+  /* background: #000; */
+}
+.side-bar a li {
+  padding-left: 10px;
+  font-size: 23px;
+}
+
+.active-hover:hover {
+  background-color: #3e6aa9;
+}
+.main-page {
+  background: #e7e8fd;
+  min-height: fit-content;
+}
+.Container {
+  background: #fff;
+  border-radius: 10px;
+  /* min-height: 400px; */
+  padding-bottom: 2px;
+}
+.Container h4 {
+  padding-top: 14px;
+  font-size: 22px;
+}
+.Pill {
+  width: 60px;
+  margin-top: 5px;
+}
+.Today-pill {
+  /* border: 2px solid rgb(204, 195, 195); */
+  border-radius: 10px;
+  height: 80px;
+  width: 150px;
+}
+.Today-log {
+  /* border: 2px solid rgb(204, 195, 195); */
+  border-radius: 10px;
+  height: 60px;
+  width: 230px;
+  /* background: #000;                                      */
+}
+.Pill-type {
+  border: 2px solid rgba(118, 114, 114, 0.152);
+  border-radius: 3px;
+}
+.log {
+  width: 500px;
+  /* background: #000; */
+}
+.btn-color {
+  background-color: #3e6aa9;
+}
+
+.outline {
+  outline-style: auto;
+  outline-color: #c7ddfca3;
+  transition: 2ms;
+}
+.outline:focus
+{
+  outline-width: 2;
+}
+ .section
+ {
+  height: 100%;
+  
+ }
+ .Patient
+ {
+  transition: 0.3s all;
+
+ }
+ .Patient:hover
+ {
+  scale: 1.03;
+ }
+
+ .person
+ {
+  font-size: 60px;
+ }
+
+ .cursor
+ {
+  cursor: default;
+ }
+
+ .min-wd
+ {
+  max-width: min-content;
+ }
+ .logo
+ {
+    font-size: 70px !important;
+ }
+.dot
+{
+  border: dotted;
+ 
+
+}
+
+ @media (max-width : 1000px) {
+    .dotted
+    {
+      width: 15rem !important;
+      height: 15rem !important; 
+      
+    }
+    .dotted i
+    {
+      font-size: 30px !important;
+    }
+    .dotted h4
+    {
+      font-size: 15px;
+    }
+    .dotted .medications 
+    {
+      font-size: 13px;
+    }
+    .dotted .card-content
+    {
+      font-size: 20px !important;
+    }
+    .dotted a
+    {
+      padding: 12px 5px  !important;
+      font-size: 12px !important;
+    }
+    .dotted .card-contentt
+    {
+      font-size: 12px !important;
+    }
+    .dotted .text-number
+    {
+      font-size: 25px !important
+    }
+
+ }
+
+ @media (max-width : 750px) 
+ {
+  .dotted h4
+  {
+    font-size: 20px !important;
+  }
+  
+  .dotted a
+  {
+    padding: 17px !important;
+    font-size: 20px !important;
+  }
+ }
