@@ -21,7 +21,7 @@ function AssignEmail() {
 }
 
 const insertEmail = document.getElementById("insertEmail");
-insertEmail.addEventListener("click", AssignEmail);
+insertEmail?.addEventListener("click", AssignEmail);
 
 let cup = [cup1, cup2, cup3, cup4];
 
@@ -47,6 +47,7 @@ function cupsInfo() {
 }
 function buildTable(data) {
   let table = document.getElementById("myTable");
+  if (!table) return;
   table.innerHTML = "";
   for (let i = 0; i < data.length; i++) {
     const row = `<tr>
@@ -110,11 +111,12 @@ function SetDate(Datte) {
   let hour12 = date.getHours() % 12 || 12;
   Datte.innerHTML = ` ${date.getDate()}, ${mon}. ${hour12}:${date.getMinutes().toString().padStart(2, "0")} ${AmorPm}`;
 }
-SetDate(currentDate);
-
-setInterval(() => {
+if (currentDate) {
   SetDate(currentDate);
-}, 1000);
+  setInterval(() => {
+    SetDate(currentDate);
+  }, 1000);
+}
 
 function Cup1Status(e) {
   const Cup1Pill = document.getElementById("Cup1Pill");

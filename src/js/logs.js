@@ -33,28 +33,34 @@ function getLogs() {
   const totalLogs = document.getElementById("total-logs");
   const logsRef = ref(db, "users/Abdelaziz/logs");
 
-  get(logsRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const data = snapshot.val();
+  get(logsRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
 
-      logsArray = Object.values(data).reverse();
+        logsArray = Object.values(data).reverse();
 
-      console.log(logsArray);
+        if (totalLogs) {
+          totalLogs.innerHTML = `Total logs: ${logsArray.length}`;
+        }
 
-      if (totalLogs) {
-        totalLogs.innerHTML = `Total logs:${logsArray.length}`;
+        buildTable(logsArray);
+      } else {
+        buildTable([]);
+        if (totalLogs) totalLogs.textContent = "Total logs: 0";
       }
-
-      buildTable(logsArray);
-    } else {
+    })
+    .catch((err) => {
+      console.error("Failed to load logs:", err);
       buildTable([]);
-      if (totalLogs) totalLogs.innerHTML = 0;
-    }
-  });
+      if (totalLogs) {
+        totalLogs.textContent = "Could not load logs";
+      }
+    });
 }
 
 getLogs();
-document.getElementById("exportPDF").addEventListener("click", () => {
+document.getElementById("exportPDF")?.addEventListener("click", () => {
   const { jsPDF } = window.jspdf;
 
   const doc = new jsPDF();
@@ -71,7 +77,7 @@ document.getElementById("exportPDF").addEventListener("click", () => {
 
 const csvBtn = document.getElementById("exportCSV");
 
-csvBtn.onclick = () => {
+csvBtn?.addEventListener("click", () => {
   const table = document.getElementById("logsTable");
   let csv = [];
 
@@ -93,12 +99,12 @@ csvBtn.onclick = () => {
   link.href = URL.createObjectURL(blob);
   link.download = "medication-logs.csv";
   link.click();
-};
+});
 
 let th = document.getElementsByTagName("th");
 
-th.onclick = function () {
-  console.log("column clicked");
-};
-
-let array = logsArray.map((items) => {});
+for (const header of th) {
+  header.addEventListener("click", () => {
+    console.log("column clicked");
+  });
+}
