@@ -61,13 +61,6 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
               ></i
               >Dashboard</a
             >
-            <a href="user.html" class="active-hover">
-              <i
-                class="fas fa-user"
-                style="font-size: 25px; margin-right: 8px"
-              ></i
-              >Users</a
-            >
             <a href="medic.html"  class="active-hover"
               ><i
                 class="fas fa-pills"
@@ -82,12 +75,16 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
               ></i
               >View logs</a
             >
+            <a href="analytics.html" class="active-hover">
+              <i class="fas fa-chart-line" style="font-size: 25px; margin-right: 8px"></i>
+              Analytics
+            </a>
           </div>
         </nav>
         <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 main-page">
            <h1 class="mb-4 text-center text-md-start fw-bold">
             View Logs
-                        <div class="float-md-end rounded-3 px-md-3 py-3  px-0 mt-md-0  mt-3   float-sm-start  bg-white text-body-secondary shadow-sm fs-5 fs-3-md"><i class="fa-regular fa-calendar c"></i> <span id="date" class="fw-bolder"></span></div>
+        <div class="float-md-end rounded-3 px-md-3 py-3  px-0 mt-md-0  mt-3   float-sm-start  bg-white text-body-secondary shadow-sm fs-5 fs-3-md"><i class="fa-regular fa-calendar c"></i> <span id="datee" class="fw-bolder"></span></div>
 
             <p class="fs-5 mt-3 fw-lighter">Track all activites and events in your system.</p>
           </h1>
@@ -119,9 +116,10 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                   <h4>Doses Taken</h4>
                 </div>
                 <div
+                id="takenCount"
                   class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
                 >
-                  4/8
+                  0/0
                 </div>
                 <p class="lead fs-5 text-center mt-1 card-content">Today</p>
               </div>
@@ -150,9 +148,10 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                   <h4>Missed Doses</h4>
                 </div>
                 <div
+                id="alertsCount"
                   class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
                 >
-                  4/8
+                  0/0
                 </div>
                 <p class="lead fs-5 text-center mt-1 card-content">Today</p>
               </div>
@@ -181,9 +180,10 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                   <h4 class="medications">Alerts</h4>
                 </div>
                 <div
+                id="alertsCount"
                   class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
                 >
-                  10
+                  0
                 </div>
                 <p class="lead fs-5 text-center mt-1 card-content">today    </p>
               </div>
@@ -212,9 +212,10 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                   <h4 class="medications">Total logs</h4>
                 </div>
                 <div
+                id="totalLogsCard"
                   class="card-text fs-1 fw-bolder text-center lead m-auto text-number"
                 >
-                  128
+                  0
                 </div>
                 <p class="lead fs-5 text-center mt-1 card-content">All time</p>
               </div>
@@ -228,12 +229,19 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
            
             <div class="d-flex align-items-center justify-content-between">
                 <div class=" p-1 ">
-                    <select value="" class="form-select w-auto text-start fw-bold mx-5" style="padding: 10px 60px;">
-                        <option name="All" id="">All</option>
-                        <option name="Taken" id="">Taken</option>
-                        <option name="Missed" id="">Missed</option>
-                        <option name="Alerts" id="">Alerts</option>
-                    </select>
+                  <select
+                  id="typeFilter"
+                  class="form-select w-auto text-start fw-bold mx-5"
+                  style="padding: 10px 60px;"
+                >
+                  <option value="All">All</option>
+                  <option value="Taken">Taken</option>
+                  <option value="Missed">Missed</option>
+                  <option value="Assigned">Assigned</option>
+                  <option value="Updated">Updated</option>
+                  <option value="Empty">Empty</option>
+                  <option value="Alerts">Alerts</option>
+                </select>
                 </div>
                 <div class=" p-3 ">
                     <input type="search" name="search" id="search" placeholder="Search logs" class="w-100 form-check-input  py-3 px-5 rounded-3 border-2">
@@ -329,7 +337,7 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
       <th scope="col"data-column ="Type" data-order="desc" class="text-secondary">Type</th>
       <th scope="col"data-column ="Cup" data-order="desc" class="text-secondary">Cup</th>
       <th scope="col" data-column ="Medication" data-order="desc" class="text-secondary">Medication</th>
-      <th scope="col" data-column ="Scheduled" data-order="desc" class="text-secondary">Scheduled Time</th>
+      <th scope="col" data-column="ScheduledTime" data-order="desc" class="text-secondary">Scheduled Time</th>
     </tr>
   </thead>
   <tbody id="myTable">

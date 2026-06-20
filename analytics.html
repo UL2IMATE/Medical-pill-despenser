@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIFA Analytics</title>
+
+    <style>
+      .chart-small {
+        height: 220px;
+        width: 100%;
+        position: relative;
+      }
+
+      .chart-small canvas {
+        max-height: 220px;
+      }
+
+      .analytics-card {
+        width: 20rem;
+        height: 13rem;
+      }
+
+      .analytics-card i {
+        font-size: 55px;
+        margin: auto;
+        margin-top: 22px;
+      }
+
+      @media (max-width: 768px) {
+        .chart-small {
+          height: 240px;
+        }
+
+        .analytics-card {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block side-bar side-bar1">
+          <div>
+            <h3><i class="fas fa-capsules"></i> Pill reminder</h3>
+            <hr />
+
+            <a href="index.html" class="active-hover">
+              <i
+                class="fas fa-home"
+                style="font-size: 25px; margin-right: 8px"
+              ></i>
+              Dashboard
+            </a>
+
+            <a href="medic.html" class="active-hover">
+              <i
+                class="fas fa-pills"
+                style="font-size: 25px; margin-right: 8px"
+              ></i>
+              Assign medication
+            </a>
+
+            <a href="logs.html" class="active-hover">
+              <i
+                class="fas fa-clipboard-check"
+                style="font-size: 25px; margin-right: 8px"
+              ></i>
+              View logs
+            </a>
+
+            <a href="analytics.html" class="active-hover">
+              <i
+                class="fas fa-chart-line"
+                style="font-size: 25px; margin-right: 8px"
+              ></i>
+              Analytics
+            </a>
+          </div>
+        </nav>
+
+        <!-- Main Page -->
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 main-page">
+          <h1 class="mb-4 text-center text-md-start fw-bold">
+            Analytics
+
+            <div
+              class="float-md-end rounded-3 px-md-3 py-3 px-0 mt-md-0 mt-3 float-sm-start bg-white text-body-secondary shadow-sm fs-5"
+            >
+              <i class="fa-regular fa-calendar c"></i>
+              <span id="dateAnalytics" class="fw-bolder"></span>
+            </div>
+
+            <p class="fs-5 mt-3 fw-lighter">
+              Overview of dispenser status and medication activity.
+            </p>
+          </h1>
+
+          <hr />
+
+          <!-- Top Cards -->
+          <div
+            class="container-fluid mb-4 d-flex gap-3 justify-content-center flex-wrap"
+          >
+            <div class="card rounded-5 shadow-sm analytics-card">
+              <i class="fa-solid fa-box-open text-success"></i>
+              <div class="card-body text-center">
+                <h4>Filled Cups</h4>
+                <div id="filledCups" class="fs-2 fw-bold text-success">
+                  0/4
+                </div>
+                <p class="lead fs-6">cups with medication</p>
+              </div>
+            </div>
+
+            <div class="card rounded-5 shadow-sm analytics-card">
+              <i class="fa-solid fa-circle-exclamation text-danger"></i>
+              <div class="card-body text-center">
+                <h4>Empty Cups</h4>
+                <div id="emptyCups" class="fs-2 fw-bold text-danger">0/4</div>
+                <p class="lead fs-6">cups needing attention</p>
+              </div>
+            </div>
+
+            <div class="card rounded-5 shadow-sm analytics-card">
+              <i class="fa-solid fa-pills text-primary"></i>
+              <div class="card-body text-center">
+                <h4>Total Pills</h4>
+                <div id="totalPills" class="fs-2 fw-bold text-primary">0</div>
+                <p class="lead fs-6">pills inside dispenser</p>
+              </div>
+            </div>
+
+            <div class="card rounded-5 shadow-sm analytics-card">
+              <i
+                class="fa-solid fa-clipboard-list"
+                style="color: #623ea9"
+              ></i>
+              <div class="card-body text-center">
+                <h4>Total Logs</h4>
+                <div
+                  id="totalLogsAnalytics"
+                  class="fs-2 fw-bold"
+                  style="color: #623ea9"
+                >
+                  0
+                </div>
+                <p class="lead fs-6">recorded activities</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row 1 -->
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card rounded-4 border-0 shadow-sm p-4">
+                <h4 class="fw-bold mb-3 fs-5">
+                  <i class="fa-solid fa-chart-column text-primary me-2"></i>
+                  Pills in Each Cup
+                </h4>
+
+                <div class="chart-small">
+                  <canvas id="cupStockChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card rounded-4 border-0 shadow-sm p-4">
+                <h4 class="fw-bold mb-3 fs-5">
+                  <i class="fa-solid fa-chart-pie text-success me-2"></i>
+                  Cup Status Overview
+                </h4>
+
+                <div class="chart-small">
+                  <canvas id="cupStatusChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row 2 -->
+          <div class="row g-4 mt-1">
+            <div class="col-md-6">
+              <div class="card rounded-4 border-0 shadow-sm p-4">
+                <h4 class="fw-bold mb-3 fs-5">
+                  <i class="fa-solid fa-clock-rotate-left text-info me-2"></i>
+                  Log Activity
+                </h4>
+
+                <div class="chart-small">
+                  <canvas id="logActivityChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card rounded-4 border-0 shadow-sm p-4">
+                <h4 class="fw-bold mb-3 fs-5">
+                  <i class="fa-solid fa-capsules text-warning me-2"></i>
+                  Medication Distribution
+                </h4>
+
+                <div class="chart-small">
+                  <canvas id="medicationChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="card rounded-4 border-0 shadow-sm p-4">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <h4 class="fw-bold mb-0 fs-5">
+                    <i class="fa-solid fa-list text-primary me-2"></i>
+                    Recent Activity
+                  </h4>
+
+                  <a href="logs.html" class="text-decoration-none fw-bold">
+                    View all logs <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-striped text-start">
+                    <thead>
+                      <tr>
+                        <th>Time</th>
+                        <th>Type</th>
+                        <th>Cup</th>
+                        <th>Medication</th>
+                        <th>Scheduled Time</th>
+                      </tr>
+                    </thead>
+
+                    <tbody id="recentActivityTable">
+                      <tr>
+                        <td colspan="5" class="text-center text-muted">
+                          No recent activity
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Main Page -->
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="/src/js/analytics.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

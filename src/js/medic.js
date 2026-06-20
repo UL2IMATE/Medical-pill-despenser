@@ -45,20 +45,20 @@ function cupsInfo() {
     });
   }
 }
-function buildTable(data) {
-  let table = document.getElementById("myTable");
-  if (!table) return;
-  table.innerHTML = "";
-  for (let i = 0; i < data.length; i++) {
-    const row = `<tr>
-      <td scope="row">${data[i].Time}</td>
-      <td scope="row">${data[i].Type}</td>
-      <td scope="row">${data[i].Cup}</td>
-      <td scope="row">${data[i].Medication}</td>
-    </tr>`;
-    table.innerHTML += row;
-  }
-}
+// function buildTable(data) {
+//   let table = document.getElementById("myTable");
+//   if (!table) return;
+//   table.innerHTML = "";
+//   for (let i = 0; i < data.length; i++) {
+//     const row = `<tr>
+//       <td scope="row">${data[i].Time}</td>
+//       <td scope="row">${data[i].Type}</td>
+//       <td scope="row">${data[i].Cup}</td>
+//       <td scope="row">${data[i].Medication}</td>
+//     </tr>`;
+//     table.innerHTML += row;
+//   }
+// }
 
 const logs = [];
 logs.push();
