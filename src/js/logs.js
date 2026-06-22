@@ -5,6 +5,8 @@ import {
 
 import { db } from "./firebase.js";
 
+const basePath = "users/Abdelaziz";
+
 const currentDate = document.getElementById("datee");
 
 const typeFilter = document.getElementById("typeFilter");
@@ -12,10 +14,12 @@ const searchInput = document.getElementById("search");
 
 const totalLogs = document.getElementById("total-logs");
 const totalLogsCard = document.getElementById("totalLogsCard");
-const takenCount = document.getElementById("takenCount");
-const missedCount = document.getElementById("missedCount");
 const alertsCount = document.getElementById("alertsCount");
 
+const filledCupsElement = document.getElementById("filledCups");
+const emptyCupsElement = document.getElementById("emptyCups");
+
+let scheduleData = {};
 let logsArray = [];
 let displayedLogs = [];
 
@@ -29,11 +33,13 @@ let sortState = {
 
 if (currentDate) {
   setDate(currentDate);
+
   setInterval(() => {
     setDate(currentDate);
   }, 1000);
 }
 
+listenToSchedule();
 listenToLogs();
 
 typeFilter?.addEventListener("change", () => {
@@ -46,46 +52,8 @@ searchInput?.addEventListener("input", () => {
   applyFilters();
 });
 
-document.getElementById("exportPDF")?.addEventListener("click", () => {
-  const { jsPDF } = window.jspdf;
-
-  const doc = new jsPDF();
-
-  doc.text("Medication Logs", 14, 15);
-
-  doc.autoTable({
-    html: "#logsTable",
-    startY: 25,
-  });
-
-  doc.save("medication-logs.pdf");
-});
-
-document.getElementById("exportCSV")?.addEventListener("click", () => {
-  const table = document.getElementById("logsTable");
-  let csv = [];
-
-  for (let row of table.rows) {
-    let rowData = [];
-
-    for (let cell of row.cells) {
-      rowData.push(`"${cell.innerText.replaceAll('"', '""')}"`);
-    }
-
-    csv.push(rowData.join(","));
-  }
-
-  const blob = new Blob([csv.join("\n")], {
-    type: "text/csv",
-  });
-
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "medication-logs.csv";
-  link.click();
-
-  URL.revokeObjectURL(link.href);
-});
+document.getElementById("exportPDF")?.addEventListener("click", exportPDF);
+document.getElementById("exportCSV")?.addEventListener("click", exportCSV);
 
 document.querySelectorAll("#logsTable th[data-column]").forEach((header) => {
   header.style.cursor = "pointer";
@@ -104,59 +72,135 @@ document.querySelectorAll("#logsTable th[data-column]").forEach((header) => {
   });
 });
 
+function listenToSchedule() {
+  const scheduleRef = ref(db, `${basePath}/schedule`);
+
+  onValue(
+    scheduleRef,
+    (snapshot) => {
+      scheduleData = snapshot.exists() ? snapshot.val() : {};
+      updateCupCards();
+      console.log("Schedule data:", scheduleData);
+    },
+    (error) => {
+      console.error("Failed to load schedule:", error);
+      updateCupCards();
+    },
+  );
+}
+
 function listenToLogs() {
-  const logsRef = ref(db, "users/Abdelaziz/logs");
+  const logsRef = ref(db, `${basePath}/logs`);
 
   onValue(
     logsRef,
     (snapshot) => {
       if (snapshot.exists()) {
-        const data = snapshot.val();
-
-        logsArray = Object.values(data)
-          .map(normalizeLog)
-          .reverse();
-
-        updateSummaryCards(logsArray);
-        applyFilters();
+        logsArray = Object.values(snapshot.val()).map(normalizeLog).reverse();
       } else {
         logsArray = [];
-        updateSummaryCards([]);
-        buildTable([]);
-
-        if (totalLogs) totalLogs.textContent = "Total logs: 0";
       }
+
+      updateLogCards(logsArray);
+      applyFilters();
+
+      console.log("Logs data:", logsArray);
     },
-    (err) => {
-      console.error("Failed to load logs:", err);
+    (error) => {
+      console.error("Failed to load logs:", error);
 
       logsArray = [];
-      updateSummaryCards([]);
+      updateLogCards([]);
       buildTable([]);
 
       if (totalLogs) {
         totalLogs.textContent = "Could not load logs";
       }
-    }
+    },
   );
 }
 
 function normalizeLog(log) {
   return {
-    Time: String(log.Time ?? "").trim(),
-    Type: String(log.Type ?? "").trim(),
-    Cup: String(log.Cup ?? "").trim(),
-    Medication: String(log.Medication ?? "").trim(),
-    ScheduledTime: String(log.ScheduledTime ?? "").trim(),
+    Time: String(log.Time ?? log.time ?? "").trim(),
+    Type: String(log.Type ?? log.type ?? "").trim(),
+    Cup: String(log.Cup ?? log.cup ?? "").trim(),
+    Medication: String(
+      log.Medication ?? log.medication ?? log.medicationName ?? "",
+    ).trim(),
+    ScheduledTime: String(
+      log.ScheduledTime ?? log.scheduledTime ?? log.scheduleTime ?? "",
+    ).trim(),
   };
+}
+
+function getCupArray() {
+  return [1, 2, 3, 4].map((num) => {
+    const cup =
+      scheduleData[`cup${num}`] ||
+      scheduleData[`Cup${num}`] ||
+      scheduleData[num] ||
+      {};
+
+    return {
+      cupNumber: num,
+      medication: String(cup.Medication ?? cup.medication ?? "").trim(),
+      pills: toNumber(cup.pills),
+      pillsInCup: toNumber(cup.pillsInCup),
+      stockPills: toNumber(cup.stockPills),
+    };
+  });
+}
+
+function updateCupCards() {
+  const cups = getCupArray();
+
+  let filled = 0;
+  let empty = 0;
+
+  cups.forEach((cup) => {
+    const hasPills = Number(cup.stockPills) > 0 || Number(cup.pillsInCup) > 0;
+
+    if (hasPills) {
+      filled++;
+    } else {
+      empty++;
+    }
+  });
+
+  if (filledCupsElement) {
+    filledCupsElement.textContent = `${filled}/4`;
+  }
+
+  if (emptyCupsElement) {
+    emptyCupsElement.textContent = `${empty}/4`;
+  }
+
+  console.log("Filled cups:", filled);
+  console.log("Empty cups:", empty);
+}
+
+function updateLogCards(data) {
+  const alerts = data.filter((log) => {
+    const type = log.Type.toLowerCase();
+    return type === "empty" || type === "alert" || type === "alerts";
+  }).length;
+
+  if (alertsCount) {
+    alertsCount.textContent = alerts;
+  }
+
+  if (totalLogsCard) {
+    totalLogsCard.textContent = data.length;
+  }
+
+  console.log("Alerts:", alerts);
+  console.log("Total logs:", data.length);
 }
 
 function applyFilters() {
   displayedLogs = logsArray.filter((log) => {
-    const typeMatch = checkTypeFilter(log);
-    const searchMatch = checkSearch(log);
-
-    return typeMatch && searchMatch;
+    return checkTypeFilter(log) && checkSearch(log);
   });
 
   displayedLogs.sort(compareLogs);
@@ -169,17 +213,17 @@ function applyFilters() {
 }
 
 function checkTypeFilter(log) {
-  const type = log.Type;
+  const type = log.Type.toLowerCase();
 
   if (currentFilter === "All") {
     return true;
   }
 
   if (currentFilter === "Alerts") {
-    return type === "Empty" || type === "Alert";
+    return type === "empty" || type === "alert" || type === "alerts";
   }
 
-  return type === currentFilter;
+  return type === currentFilter.toLowerCase();
 }
 
 function checkSearch(log) {
@@ -199,8 +243,8 @@ function checkSearch(log) {
 }
 
 function compareLogs(a, b) {
-  let valueA = getSortValue(a, sortState.column);
-  let valueB = getSortValue(b, sortState.column);
+  const valueA = getSortValue(a, sortState.column);
+  const valueB = getSortValue(b, sortState.column);
 
   if (valueA < valueB) {
     return sortState.direction === "asc" ? -1 : 1;
@@ -215,97 +259,11 @@ function compareLogs(a, b) {
 
 function getSortValue(log, column) {
   if (column === "Time") {
-    const time = new Date(log.Time).getTime();
-    return Number.isNaN(time) ? 0 : time;
+    const parsedTime = new Date(log.Time).getTime();
+    return Number.isNaN(parsedTime) ? 0 : parsedTime;
   }
 
   return String(log[column] ?? "").toLowerCase();
-}
-
-function updateSummaryCards(data) {
-  const todayLogs = data.filter((log) => isToday(log.Time));
-
-  const takenToday = todayLogs.filter((log) => log.Type === "Taken").length;
-  const missedToday = todayLogs.filter((log) => log.Type === "Missed").length;
-  const alertsToday = todayLogs.filter(
-    (log) => log.Type === "Empty" || log.Type === "Alert"
-  ).length;
-
-  const todayDoseTotal = takenToday + missedToday;
-
-  if (takenCount) {
-    takenCount.textContent = `${takenToday}/${todayDoseTotal}`;
-  }
-
-  if (missedCount) {
-    missedCount.textContent = `${missedToday}/${todayDoseTotal}`;
-  }
-
-  if (alertsCount) {
-    alertsCount.textContent = alertsToday;
-  }
-
-  if (totalLogsCard) {
-    totalLogsCard.textContent = data.length;
-  }
-}
-
-function isToday(timeValue) {
-  const logDate = new Date(timeValue);
-
-  if (Number.isNaN(logDate.getTime())) {
-    return false;
-  }
-
-  const today = new Date();
-
-  return (
-    logDate.getDate() === today.getDate() &&
-    logDate.getMonth() === today.getMonth() &&
-    logDate.getFullYear() === today.getFullYear()
-  );
-}
-
-function typeCell(type) {
-  const types = {
-    Taken: {
-      color: "#10a535",
-      icon: "fa-circle-check",
-    },
-    Missed: {
-      color: "#d80303",
-      icon: "fa-circle-xmark",
-    },
-    Assigned: {
-      color: "#623ea9",
-      icon: "fa-bell",
-    },
-    Empty: {
-      color: "#d80303",
-      icon: "fa-circle-exclamation",
-    },
-    Updated: {
-      color: "#018aca",
-      icon: "fa-pills",
-    },
-    Alert: {
-      color: "#f0ad00",
-      icon: "fa-triangle-exclamation",
-    },
-  };
-
-  const cfg = types[type];
-
-  if (!cfg) {
-    return escapeHTML(type);
-  }
-
-  return `
-    <span class="fw-semibold d-inline-flex align-items-center gap-2" style="color: ${cfg.color}">
-      <i class="fa-solid ${cfg.icon}"></i>
-      ${escapeHTML(type)}
-    </span>
-  `;
 }
 
 function buildTable(data) {
@@ -329,16 +287,114 @@ function buildTable(data) {
   tbody.innerHTML = data
     .map(
       (log) => `
-      <tr>
-        <td>${escapeHTML(log.Time)}</td>
-        <td>${typeCell(log.Type)}</td>
-        <td>${escapeHTML(log.Cup)}</td>
-        <td>${escapeHTML(log.Medication)}</td>
-        <td>${escapeHTML(log.ScheduledTime)}</td>
-      </tr>
-    `
+        <tr>
+          <td>${escapeHTML(log.Time)}</td>
+          <td>${typeCell(log.Type)}</td>
+          <td>${escapeHTML(log.Cup)}</td>
+          <td>${escapeHTML(log.Medication)}</td>
+          <td>${escapeHTML(log.ScheduledTime)}</td>
+        </tr>
+      `,
     )
     .join("");
+}
+
+function typeCell(type) {
+  const types = {
+    Assigned: {
+      color: "#623ea9",
+      icon: "fa-bell",
+    },
+    Updated: {
+      color: "#018aca",
+      icon: "fa-pills",
+    },
+    Empty: {
+      color: "#d80303",
+      icon: "fa-circle-exclamation",
+    },
+    Alert: {
+      color: "#ffc107",
+      icon: "fa-triangle-exclamation",
+    },
+    Alerts: {
+      color: "#ffc107",
+      icon: "fa-triangle-exclamation",
+    },
+  };
+
+  const cfg = types[type];
+
+  if (!cfg) {
+    return escapeHTML(type);
+  }
+
+  return `
+    <span class="fw-semibold d-inline-flex align-items-center gap-2" style="color: ${cfg.color}">
+      <i class="fa-solid ${cfg.icon}"></i>
+      ${escapeHTML(type)}
+    </span>
+  `;
+}
+
+function exportPDF() {
+  if (!window.jspdf) {
+    alert("PDF library is not loaded.");
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.text("Medication Logs", 14, 15);
+
+  doc.autoTable({
+    startY: 25,
+    head: [["Time", "Type", "Cup", "Medication", "Scheduled Time"]],
+    body: displayedLogs.map((log) => [
+      log.Time,
+      log.Type,
+      log.Cup,
+      log.Medication,
+      log.ScheduledTime,
+    ]),
+  });
+
+  doc.save("medication-logs.pdf");
+}
+
+function exportCSV() {
+  const headers = ["Time", "Type", "Cup", "Medication", "Scheduled Time"];
+
+  const rows = displayedLogs.map((log) => [
+    log.Time,
+    log.Type,
+    log.Cup,
+    log.Medication,
+    log.ScheduledTime,
+  ]);
+
+  const csv = [headers, ...rows]
+    .map((row) =>
+      row.map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(","),
+    )
+    .join("\n");
+
+  const blob = new Blob([csv], {
+    type: "text/csv;charset=utf-8;",
+  });
+
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "medication-logs.csv";
+  link.click();
+
+  URL.revokeObjectURL(link.href);
+}
+
+function toNumber(value) {
+  const number = Number(value);
+  return Number.isNaN(number) ? 0 : number;
 }
 
 function escapeHTML(value) {
@@ -368,10 +424,10 @@ function setDate(dateElement) {
     "Dec",
   ];
 
-  const mon = months[date.getMonth()];
+  const month = months[date.getMonth()];
   const period = date.getHours() >= 12 ? "PM" : "AM";
   const hour12 = date.getHours() % 12 || 12;
   const minute = date.getMinutes().toString().padStart(2, "0");
 
-  dateElement.innerHTML = ` ${date.getDate()}, ${mon}. ${hour12}:${minute} ${period}`;
+  dateElement.innerHTML = ` ${date.getDate()}, ${month}. ${hour12}:${minute} ${period}`;
 }
