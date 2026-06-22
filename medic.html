@@ -2,43 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="
-https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
-"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Condensed:ital,wght@0,100;1,100&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Share+Tech&family=Stack+Sans+Headline:wght@200..700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Condensed:ital,wght@0,100;1,100&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Share+Tech&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-
     <link rel="stylesheet" href="/src/css/style.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -46,52 +25,161 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>medical-despenser</title>
+    <title>SIFA - Assign Medication</title>
+
+    <style>
+      .alert-email-box {
+  background-color: #ffffff;
+  border: 1px solid #dbe1ff;
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.25rem 0.8rem rgba(0, 0, 0, 0.06);
+}
+
+.alert-email-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background-color: #e6e9fd;
+  color: #0d6efd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.alert-email-input .input-group-text {
+  background-color: #f0f2fe;
+  border: 1px solid #dbe1ff;
+  color: #0d6efd;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.alert-email-input .form-control {
+  border: 1px solid #dbe1ff;
+  padding: 0.9rem 1rem;
+}
+
+.alert-email-input .form-control:focus {
+  box-shadow: none;
+  border-color: #0d6efd;
+}
+
+.alert-email-input .btn {
+  border-radius: 0 0.7rem 0.7rem 0;
+}
+
+@media (max-width: 768px) {
+  .alert-email-input {
+    flex-direction: column;
+  }
+
+  .alert-email-input .input-group-text,
+  .alert-email-input .form-control,
+  .alert-email-input .btn {
+    width: 100%;
+    border-radius: 0.7rem !important;
+    margin-bottom: 0.5rem;
+  }
+}
+      .cup-card {
+        min-height: 34rem;
+        transition: 0.2s ease;
+      }
+
+      .cup-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+      }
+
+      .cup-info-label {
+        color: #6c757d;
+        font-size: 0.95rem;
+        font-weight: 400;
+      }
+
+      .cup-info-value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1.7rem;
+      }
+
+      .assign-info-box {
+        background-color: #e6e9fd;
+        border: none;
+        border-radius: 1rem;
+      }
+
+      #emailInput {
+        min-width: 280px;
+      }
+
+      @media (max-width: 768px) {
+        #emailInput {
+          width: 100% !important;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <div class="container-fluid">
       <div class="row">
+        <!-- Sidebar -->
         <nav class="col-md-3 col-lg-2 d-md-block side-bar side-bar1">
           <div>
             <h3><i class="fas fa-capsules"></i> Pill reminder</h3>
             <hr />
+
             <a href="index.html" class="active-hover">
               <i
                 class="fas fa-home"
                 style="font-size: 25px; margin-right: 8px"
-              ></i
-              >Dashboard</a
-            >
-            <a href="medic.html" class="active-hover"
-              ><i
+              ></i>
+              Dashboard
+            </a>
+
+            <a href="medic.html" class="active-hover">
+              <i
                 class="fas fa-pills"
                 style="font-size: 25px; margin-right: 8px"
-              ></i
-              >Assing medication</a
-            >
-            <a href="logs.html" class="active-hover"
-              ><i
+              ></i>
+              Assign medication
+            </a>
+
+            <a href="logs.html" class="active-hover">
+              <i
                 class="fas fa-clipboard-check"
                 style="font-size: 25px; margin-right: 8px"
-              ></i
-              >View logs</a
-            >
+              ></i>
+              View logs
+            </a>
+
             <a href="analytics.html" class="active-hover">
-              <i class="fas fa-chart-line" style="font-size: 25px; margin-right: 8px"></i>
+              <i
+                class="fas fa-chart-line"
+                style="font-size: 25px; margin-right: 8px"
+              ></i>
               Analytics
             </a>
           </div>
         </nav>
+
+        <!-- Main Page -->
         <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 main-page">
           <h1 class="mb-4 text-center text-md-start fw-bold">
-            Assing Medication
+            Assign Medication
+
             <div
               class="float-md-end rounded-3 px-md-3 py-3 px-0 mt-md-0 mt-3 float-sm-start bg-white text-body-secondary shadow-sm fs-5 fs-3-md"
             >
@@ -100,33 +188,59 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
             </div>
 
             <p class="fs-5 mt-3 fw-lighter">
-              Configure medication details for despenser cups
+              Configure medication details for dispenser cups.
             </p>
           </h1>
 
           <div class="container-fluid">
-            <div class="card mt-5" style="background-color: #f0f2fe">
+            <div class="card mt-5 border-0 shadow-sm" style="background-color: #f0f2fe">
               <div class="card-body">
                 <h4 class="card-title fw-bold mt-2">
                   Dispenser Cups
-                  <p class="fs-6 fw-light mt-3 mb-5">
-                    Select Cups to assign or update with the medication
+                  <p class="fs-6 fw-light mt-3 mb-4">
+                    Select cups to assign or update medication information.
                   </p>
                 </h4>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter emaail to recieve "
-                  id="emailInput"
-                  class="form-check-input w-25 py-3 px-5 rounded-3 border-2 mb-3"
-                />
-                <button class="btn btn-info" id="insertEmail">insert</button>
+
+                <div class="alert-email-box mb-5">
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="alert-email-icon">
+                      <i class="fa-solid fa-envelope"></i>
+                    </div>
+                
+                    <div>
+                      <h5 class="fw-bold mb-1">Alert Email</h5>
+                      <p class="text-muted mb-0">
+                        Enter the email address that will receive medication alerts.
+                      </p>
+                    </div>
+                  </div>
+                
+                  <div class="input-group alert-email-input">
+                    <span class="input-group-text">
+                      <i class="fa-solid fa-at"></i>
+                    </span>
+                
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="example@email.com"
+                      id="emailInput"
+                      class="form-control"
+                    />
+                
+                    <button class="btn btn-primary fw-bold px-4" id="insertEmail">
+                      Save Email
+                    </button>
+                  </div>
+                </div>
 
                 <div class="card-text">
                   <div class="row g-3 gap-5 justify-content-center">
+                    <!-- Cup 1 -->
                     <div class="col-lg-2 col-md-12">
                       <div
-                        class="card border-secondary rounded-4"
+                        class="card border-secondary rounded-4 cup-card"
                         id="Cup-1"
                         style="border: 2px solid"
                       >
@@ -138,10 +252,9 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                             class="card-header"
                             style="background-color: rgba(25, 135, 84, 0.05)"
                           >
-                            <i
-                              class="bi bi-1-circle-fill text-primary fs-1"
-                            ></i>
+                            <i class="bi bi-1-circle-fill text-primary fs-1"></i>
                             <h4>Cup 1</h4>
+
                             <div
                               class="text-bg-secondary rounded badge rounded-pill px-3 py-2 mb-3"
                               id="Cup1Badge"
@@ -149,33 +262,31 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                               Empty
                             </div>
                           </div>
+
                           <div class="card-body">
-                            <h5 class="fs-6 fw-light">
+                            <h5 class="cup-info-label">
                               <i class="fa-solid fa-capsules text-primary"></i>
-                              pill name
+                              Pill Name
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup1PillName">-</p>
-                            <h5 class="fs-6 fw-light">
-                              <i
-                                class="fa-solid fa-diagram-next text-primary"
-                              ></i>
-                              pill remaining
+                            <p class="cup-info-value" id="Cup1PillName">-</p>
+
+                            <h5 class="cup-info-label">
+                              <i class="fa-solid fa-diagram-next text-primary"></i>
+                              Pills to Dispense
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup1Remainder">
-                              -
-                            </p>
-                            <h5 class="fs-6 fw-light">
-                              <i
-                                class="fa-solid fa-weight-hanging text-primary"
-                              ></i>
+                            <p class="cup-info-value" id="Cup1Remainder">-</p>
+
+                            <h5 class="cup-info-label">
+                              <i class="fa-solid fa-weight-hanging text-primary"></i>
                               Current Weight
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup1Weight">-</p>
-                            <h5 class="fs-6 fw-light">
+                            <p class="cup-info-value" id="Cup1Weight">-</p>
+
+                            <h5 class="cup-info-label">
                               <i class="fa-regular fa-clock text-primary"></i>
-                              Next dose
+                              Next Dose
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup1Time">-</p>
+                            <p class="cup-info-value" id="Cup1Time">-</p>
 
                             <button
                               type="button"
@@ -190,9 +301,11 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                         </div>
                       </div>
                     </div>
+
+                    <!-- Cup 2 -->
                     <div class="col-lg-2 col-md-12">
                       <div
-                        class="card border-warning rounded-4"
+                        class="card border-warning rounded-4 cup-card"
                         style="border: 2px solid"
                         id="Cup-2"
                       >
@@ -204,10 +317,9 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                             class="card-header"
                             style="background-color: rgba(255, 193, 7, 0.05)"
                           >
-                            <i
-                              class="bi bi-2-circle-fill text-warning fs-1"
-                            ></i>
+                            <i class="bi bi-2-circle-fill text-warning fs-1"></i>
                             <h4>Cup 2</h4>
+
                             <div
                               class="badge rounded-pill bg-secondary px-3 py-2 mb-3"
                               id="Cup2Badge"
@@ -215,33 +327,31 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                               Empty
                             </div>
                           </div>
+
                           <div class="card-body">
-                            <h5 class="fs-6 fw-light">
+                            <h5 class="cup-info-label">
                               <i class="fa-solid fa-capsules text-primary"></i>
-                              pill name
+                              Pill Name
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup2PillName">-</p>
-                            <h5 class="fs-6 fw-light">
-                              <i
-                                class="fa-solid fa-diagram-next text-primary"
-                              ></i>
-                              pill remaining
+                            <p class="cup-info-value" id="Cup2PillName">-</p>
+
+                            <h5 class="cup-info-label">
+                              <i class="fa-solid fa-diagram-next text-primary"></i>
+                              Pills to Dispense
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup2Remainder">
-                              -
-                            </p>
-                            <h5 class="fs-6 fw-light">
-                              <i
-                                class="fa-solid fa-weight-hanging text-primary"
-                              ></i>
+                            <p class="cup-info-value" id="Cup2Remainder">-</p>
+
+                            <h5 class="cup-info-label">
+                              <i class="fa-solid fa-weight-hanging text-primary"></i>
                               Current Weight
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup2Weight">-</p>
-                            <h5 class="fs-6 fw-light">
+                            <p class="cup-info-value" id="Cup2Weight">-</p>
+
+                            <h5 class="cup-info-label">
                               <i class="fa-regular fa-clock text-primary"></i>
-                              Next dose
+                              Next Dose
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup2Time">-</p>
+                            <p class="cup-info-value" id="Cup2Time">-</p>
 
                             <button
                               type="button"
@@ -250,24 +360,27 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                               class="btn btn-outline-secondary"
                               id="Cup2Button"
                             >
-                              Assign Medication
+                              Assign medication
                             </button>
                           </div>
                         </div>
                       </div>
                     </div>
+
+                    <!-- Cup 3 -->
                     <div class="col-lg-2 col-md-12">
                       <div
-                        class="card border-dashed border-danger rounded-4"
+                        class="card border-danger rounded-4 cup-card"
                         style="border: 2px solid; background-color: #f0f2fe"
                       >
-                        <div class="card-body text-center" style="">
+                        <div class="card-body text-center">
                           <div
                             class="card-header"
                             style="background-color: #f0f2fe"
                           >
                             <i class="bi bi-3-circle-fill text-danger fs-1"></i>
                             <h4>Cup 3</h4>
+
                             <div
                               class="badge rounded-pill text-bg-danger px-3 py-2 mb-3"
                               id="Cup3Badge"
@@ -275,33 +388,31 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                               Empty
                             </div>
                           </div>
+
                           <div class="card-body">
-                            <h5 class="fs-6 fw-light">
+                            <h5 class="cup-info-label">
                               <i class="fa-solid fa-capsules text-primary"></i>
-                              pill name
+                              Pill Name
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup3PillName">-</p>
-                            <h5 class="fs-6 fw-light">
-                              <i
-                                class="fa-solid fa-diagram-next text-primary"
-                              ></i>
-                              pill remaining
+                            <p class="cup-info-value" id="Cup3PillName">-</p>
+
+                            <h5 class="cup-info-label">
+                              <i class="fa-solid fa-diagram-next text-primary"></i>
+                              Pills to Dispense
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup3Remainder">
-                              -
-                            </p>
-                            <h5 class="fs-6 fw-light">
-                              <i
-                                class="fa-solid fa-weight-hanging text-primary"
-                              ></i>
+                            <p class="cup-info-value" id="Cup3Remainder">-</p>
+
+                            <h5 class="cup-info-label">
+                              <i class="fa-solid fa-weight-hanging text-primary"></i>
                               Current Weight
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup3Weight">-</p>
-                            <h5 class="fs-6 fw-light">
+                            <p class="cup-info-value" id="Cup3Weight">-</p>
+
+                            <h5 class="cup-info-label">
                               <i class="fa-regular fa-clock text-primary"></i>
-                              Next dose
+                              Next Dose
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup3Time">-</p>
+                            <p class="cup-info-value" id="Cup3Time">-</p>
 
                             <button
                               type="button"
@@ -310,15 +421,17 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                               class="btn btn-outline-secondary"
                               id="Cup3Button"
                             >
-                              Assign Medication
+                              Assign medication
                             </button>
                           </div>
                         </div>
                       </div>
                     </div>
+
+                    <!-- Cup 4 -->
                     <div class="col-lg-2 col-md-12">
                       <div
-                        class="card border border-secondary rounded-4"
+                        class="card border-secondary rounded-4 cup-card"
                         style="border: 2px solid; background-color: #f0f2fe"
                       >
                         <div class="card-body text-center">
@@ -326,10 +439,9 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                             class="card-header"
                             style="background-color: #f0f2fe"
                           >
-                            <i
-                              class="bi bi-4-circle-fill text-secondary fs-1"
-                            ></i>
+                            <i class="bi bi-4-circle-fill text-secondary fs-1"></i>
                             <h4>Cup 4</h4>
+
                             <div
                               class="badge rounded-pill text-bg-secondary px-3 py-2 mb-3"
                               id="Cup4Badge"
@@ -337,33 +449,31 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                               Empty
                             </div>
                           </div>
+
                           <div class="card-body">
-                            <h5 class="fs-6 fw-light">
+                            <h5 class="cup-info-label">
                               <i class="fa-solid fa-capsules text-primary"></i>
-                              pill name
+                              Pill Name
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup4PillName">-</p>
-                            <h5 class="fs-6 fw-light">
-                              <i
-                                class="fa-solid fa-diagram-next text-primary"
-                              ></i>
-                              pill remaining
+                            <p class="cup-info-value" id="Cup4PillName">-</p>
+
+                            <h5 class="cup-info-label">
+                              <i class="fa-solid fa-diagram-next text-primary"></i>
+                              Pills to Dispense
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup4Remainder">
-                              -
-                            </p>
-                            <h5 class="fs-6 fw-light">
-                              <i
-                                class="fa-solid fa-weight-hanging text-primary"
-                              ></i>
+                            <p class="cup-info-value" id="Cup4Remainder">-</p>
+
+                            <h5 class="cup-info-label">
+                              <i class="fa-solid fa-weight-hanging text-primary"></i>
                               Current Weight
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup4Weight">-</p>
-                            <h5 class="fs-6 fw-light">
+                            <p class="cup-info-value" id="Cup4Weight">-</p>
+
+                            <h5 class="cup-info-label">
                               <i class="fa-regular fa-clock text-primary"></i>
-                              Next dose
+                              Next Dose
                             </h5>
-                            <p class="mb-5 fw-bold fs-4" id="Cup4Time">-</p>
+                            <p class="cup-info-value" id="Cup4Time">-</p>
 
                             <button
                               type="button"
@@ -380,547 +490,424 @@ https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="container-fluid my-5 w-75">
-                <div class="card p-5" style="background-color: #e6e9fd">
-                  <div class="card-title fs-5 fw-bold">
-                    <i
-                      class="fa-solid fa-circle-exclamation text-primary fs-4"
-                    ></i>
-                    About Assigning medication
-                  </div>
-                  <div class="card-body">
-                    <ul>
-                      <li class="my-3">
-                        Assing pill name to each cup to enable accurate
-                        assigning
-                      </li>
-                      <li class="my-3">
-                        Real-time data(pills remaining,weight,next dose) is
-                        retrieved from Node-RED
-                      </li>
-                      <li>
-                        Make sure the corrcet medication is placed in the
-                        selected cup
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                <!-- Info Box -->
+                <div class="container-fluid my-5 w-75">
+                  <div class="card p-5 assign-info-box">
+                    <div class="card-title fs-5 fw-bold">
+                      <i class="fa-solid fa-circle-exclamation text-primary fs-4"></i>
+                      About Assigning Medication
+                    </div>
 
-        <div
-          class="modal fade"
-          id="Cup1"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <div class="modal-title fs-4 fw-bold" id="exampleModalLabel">
-                  Assign medication-Cup 1
-                  <p class="h6 fw-lighter mt-2">
-                    Enter the pill name for cup 1
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  class="btn-close float-end"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="Pill-name" class="form-label fw-bold fs-6"
-                      >Pill Name</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="Pill_name"
-                      aria-describedby="PillName"
-                      placeholder="e.g., Metformin "
-                    />
-                    <div id="emailHelp" class="form-text">
-                      Enter the name of the medication in this cup
+                    <div class="card-body">
+                      <ul>
+                        <li class="my-3">
+                          Assign a pill name to each cup to enable accurate medication tracking.
+                        </li>
+                        <li class="my-3">
+                          Real-time data such as pill quantity, current weight, and next dose is retrieved from Node-RED.
+                        </li>
+                        <li>
+                          Make sure the correct medication is placed in the selected cup.
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                  <p class="fw-bold">Curent info(From Node-RED)</p>
-                  <ul class="list-group">
-                    <li
-                      class="list-group-item"
-                      style="background-color: #e6e9fd"
-                    >
-                      <i class="fa-solid fa-diagram-next text-primary"></i>
-                      Pills Remaining <span class="float-end fw-bold">0</span>
-                    </li>
-                    <li
-                      class="list-group-item"
-                      style="background-color: #e6e9fd"
-                    >
-                      <i class="fa-solid fa-weight-hanging text-primary"></i>
-                      Current Wieght
-                      <span class="float-end fw-bold">0.00g</span>
-                    </li>
-                    <li
-                      class="list-group-item"
-                      style="background-color: #e6e9fd"
-                    >
-                      <i class="fa-regular fa-clock text-primary"></i> Next Dose
-                      <span class="float-end fw-bold">-</span>
-                    </li>
-                    <li
-                      class="list-group-item"
-                      style="background-color: #e6e9fd"
-                    >
-                      <i
-                        class="fa-solid fa-magnifying-glass-chart text-primary"
-                      ></i>
-                      Status
-                      <span
-                        class="float-end fw-bold badge text-bg-danger text-white"
-                        >Empty</span
-                      >
-                    </li>
-                  </ul>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  id="Cup1Pill"
-                  data-bs-dismiss="modal"
-                >
-                  Save changes
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="modal fade"
-        id="Cup2"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <div class="modal-title fs-4 fw-bold" id="exampleModalLabel">
-                Assign medication-Cup 2
-                <p class="h6 fw-lighter mt-2">Enter the pill name for cup 1</p>
-              </div>
-              <button
-                type="button"
-                class="btn-close float-end"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="Pill-name" class="form-label fw-bold fs-6"
-                    >Pill Name</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Pill2name"
-                    aria-describedby="PillName"
-                    placeholder="e.g., Metformin "
-                  />
-                  <div id="emailHelp" class="form-text">
-                    Enter the name of the medication in this cup
-                  </div>
                 </div>
-                <p class="fw-bold">Curent info(From Node-RED)</p>
-                <ul class="list-group">
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-solid fa-diagram-next text-primary"></i> Pills
-                    Remaining <span class="float-end fw-bold">0</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-solid fa-weight-hanging text-primary"></i>
-                    Current Wieght <span class="float-end fw-bold">0.00g</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-regular fa-clock text-primary"></i> Next Dose
-                    <span class="float-end fw-bold">-</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i
-                      class="fa-solid fa-magnifying-glass-chart text-primary"
-                    ></i>
-                    Status
-                    <span
-                      class="float-end fw-bold badge text-bg-danger text-white"
-                      >Empty</span
-                    >
-                  </li>
-                </ul>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                id="Cup2Pill"
-                data-bs-dismiss="modal"
-              >
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="modal fade"
-        id="Cup3"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <div class="modal-title fs-4 fw-bold" id="exampleModalLabel">
-                Assign medication-Cup 3
-                <p class="h6 fw-lighter mt-2">Enter the pill name for cup 1</p>
               </div>
-              <button
-                type="button"
-                class="btn-close float-end"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="Pill-name" class="form-label fw-bold fs-6"
-                    >Pill Name</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Pill3name"
-                    aria-describedby="PillName"
-                    placeholder="e.g., Metformin "
-                  />
-                  <div id="emailHelp" class="form-text">
-                    Enter the name of the medication in this cup
-                  </div>
-                </div>
-                <p class="fw-bold">Curent info(From Node-RED)</p>
-                <ul class="list-group">
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-solid fa-diagram-next text-primary"></i> Pills
-                    Remaining <span class="float-end fw-bold">0</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-solid fa-weight-hanging text-primary"></i>
-                    Current Wieght <span class="float-end fw-bold">0.00g</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-regular fa-clock text-primary"></i> Next Dose
-                    <span class="float-end fw-bold">-</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i
-                      class="fa-solid fa-magnifying-glass-chart text-primary"
-                    ></i>
-                    Status
-                    <span
-                      class="float-end fw-bold badge text-bg-danger text-white"
-                      >Empty</span
-                    >
-                  </li>
-                </ul>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                id="Cup3Pill"
-                data-bs-dismiss="modal"
-              >
-                Save changes
-              </button>
             </div>
           </div>
-        </div>
-      </div>
-      <div
-        class="modal fade"
-        id="Cup4"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <div class="modal-title fs-4 fw-bold" id="exampleModalLabel">
-                Assign medication-Cup 4
-                <p class="h6 fw-lighter mt-2">Enter the pill name for cup 1</p>
+
+          <!-- Cup 1 Modal -->
+          <div
+            class="modal fade"
+            id="Cup1"
+            tabindex="-1"
+            aria-labelledby="Cup1ModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="modal-title fs-4 fw-bold" id="Cup1ModalLabel">
+                    Assign Medication - Cup 1
+                    <p class="h6 fw-lighter mt-2">
+                      Enter the pill name for cup 1
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn-close float-end"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="Pill_name" class="form-label fw-bold fs-6">
+                        Pill Name
+                      </label>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="Pill_name"
+                        aria-describedby="pillHelp1"
+                        placeholder="e.g., Metformin"
+                      />
+
+                      <div id="pillHelp1" class="form-text">
+                        Enter the name of the medication in this cup.
+                      </div>
+                    </div>
+
+                    <p class="fw-bold">Current Info from Node-RED</p>
+
+                    <ul class="list-group">
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-diagram-next text-primary"></i>
+                        Pills to Dispense
+                        <span class="float-end fw-bold">0</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-weight-hanging text-primary"></i>
+                        Current Weight
+                        <span class="float-end fw-bold">0.00g</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-regular fa-clock text-primary"></i>
+                        Next Dose
+                        <span class="float-end fw-bold">-</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-magnifying-glass-chart text-primary"></i>
+                        Status
+                        <span class="float-end fw-bold badge text-bg-danger text-white">
+                          Empty
+                        </span>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="Cup1Pill"
+                    data-bs-dismiss="modal"
+                  >
+                    Save changes
+                  </button>
+                </div>
               </div>
-              <button
-                type="button"
-                class="btn-close float-end"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
             </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="Pill-name" class="form-label fw-bold fs-6"
-                    >Pill Name</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Pill4name"
-                    aria-describedby="PillName"
-                    placeholder="e.g., Metformin "
-                  />
-                  <div id="emailHelp" class="form-text">
-                    Enter the name of the medication in this cup
+          </div>
+
+          <!-- Cup 2 Modal -->
+          <div
+            class="modal fade"
+            id="Cup2"
+            tabindex="-1"
+            aria-labelledby="Cup2ModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="modal-title fs-4 fw-bold" id="Cup2ModalLabel">
+                    Assign Medication - Cup 2
+                    <p class="h6 fw-lighter mt-2">
+                      Enter the pill name for cup 2
+                    </p>
                   </div>
+
+                  <button
+                    type="button"
+                    class="btn-close float-end"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
                 </div>
-                <p class="fw-bold">Curent info(From Node-RED)</p>
-                <ul class="list-group">
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-solid fa-diagram-next text-primary"></i> Pills
-                    Remaining <span class="float-end fw-bold">0</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-solid fa-weight-hanging text-primary"></i>
-                    Current Wieght <span class="float-end fw-bold">0.00g</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i class="fa-regular fa-clock text-primary"></i> Next Dose
-                    <span class="float-end fw-bold">-</span>
-                  </li>
-                  <li class="list-group-item" style="background-color: #e6e9fd">
-                    <i
-                      class="fa-solid fa-magnifying-glass-chart text-primary"
-                    ></i>
-                    Status
-                    <span
-                      class="float-end fw-bold badge text-bg-danger text-white"
-                      >Empty</span
-                    >
-                  </li>
-                </ul>
-              </form>
+
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="Pill2name" class="form-label fw-bold fs-6">
+                        Pill Name
+                      </label>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="Pill2name"
+                        aria-describedby="pillHelp2"
+                        placeholder="e.g., Metformin"
+                      />
+
+                      <div id="pillHelp2" class="form-text">
+                        Enter the name of the medication in this cup.
+                      </div>
+                    </div>
+
+                    <p class="fw-bold">Current Info from Node-RED</p>
+
+                    <ul class="list-group">
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-diagram-next text-primary"></i>
+                        Pills to Dispense
+                        <span class="float-end fw-bold">0</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-weight-hanging text-primary"></i>
+                        Current Weight
+                        <span class="float-end fw-bold">0.00g</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-regular fa-clock text-primary"></i>
+                        Next Dose
+                        <span class="float-end fw-bold">-</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-magnifying-glass-chart text-primary"></i>
+                        Status
+                        <span class="float-end fw-bold badge text-bg-danger text-white">
+                          Empty
+                        </span>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="Cup2Pill"
+                    data-bs-dismiss="modal"
+                  >
+                    Save changes
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                id="Cup4Pill"
-                data-bs-dismiss="modal"
-              >
-                Save changes
-              </button>
+          </div>
+
+          <!-- Cup 3 Modal -->
+          <div
+            class="modal fade"
+            id="Cup3"
+            tabindex="-1"
+            aria-labelledby="Cup3ModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="modal-title fs-4 fw-bold" id="Cup3ModalLabel">
+                    Assign Medication - Cup 3
+                    <p class="h6 fw-lighter mt-2">
+                      Enter the pill name for cup 3
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn-close float-end"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="Pill3name" class="form-label fw-bold fs-6">
+                        Pill Name
+                      </label>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="Pill3name"
+                        aria-describedby="pillHelp3"
+                        placeholder="e.g., Metformin"
+                      />
+
+                      <div id="pillHelp3" class="form-text">
+                        Enter the name of the medication in this cup.
+                      </div>
+                    </div>
+
+                    <p class="fw-bold">Current Info from Node-RED</p>
+
+                    <ul class="list-group">
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-diagram-next text-primary"></i>
+                        Pills to Dispense
+                        <span class="float-end fw-bold">0</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-weight-hanging text-primary"></i>
+                        Current Weight
+                        <span class="float-end fw-bold">0.00g</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-regular fa-clock text-primary"></i>
+                        Next Dose
+                        <span class="float-end fw-bold">-</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-magnifying-glass-chart text-primary"></i>
+                        Status
+                        <span class="float-end fw-bold badge text-bg-danger text-white">
+                          Empty
+                        </span>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="Cup3Pill"
+                    data-bs-dismiss="modal"
+                  >
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cup 4 Modal -->
+          <div
+            class="modal fade"
+            id="Cup4"
+            tabindex="-1"
+            aria-labelledby="Cup4ModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="modal-title fs-4 fw-bold" id="Cup4ModalLabel">
+                    Assign Medication - Cup 4
+                    <p class="h6 fw-lighter mt-2">
+                      Enter the pill name for cup 4
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn-close float-end"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="Pill4name" class="form-label fw-bold fs-6">
+                        Pill Name
+                      </label>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="Pill4name"
+                        aria-describedby="pillHelp4"
+                        placeholder="e.g., Metformin"
+                      />
+
+                      <div id="pillHelp4" class="form-text">
+                        Enter the name of the medication in this cup.
+                      </div>
+                    </div>
+
+                    <p class="fw-bold">Current Info from Node-RED</p>
+
+                    <ul class="list-group">
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-diagram-next text-primary"></i>
+                        Pills to Dispense
+                        <span class="float-end fw-bold">0</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-weight-hanging text-primary"></i>
+                        Current Weight
+                        <span class="float-end fw-bold">0.00g</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-regular fa-clock text-primary"></i>
+                        Next Dose
+                        <span class="float-end fw-bold">-</span>
+                      </li>
+
+                      <li class="list-group-item" style="background-color: #e6e9fd">
+                        <i class="fa-solid fa-magnifying-glass-chart text-primary"></i>
+                        Status
+                        <span class="float-end fw-bold badge text-bg-danger text-white">
+                          Empty
+                        </span>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="Cup4Pill"
+                    data-bs-dismiss="modal"
+                  >
+                    Save changes
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <!-- End Main Page -->
       </div>
     </div>
-    <!-- <script type="module" src="/src/main.js"></script> -->
+
     <script type="module" src="/src/js/medic.js"></script>
-    <!-- <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyCfFfJyM9jYd4FlNwHSt6pyqZFR87zAxpQ",
-        authDomain: "crud-cb6fb.firebaseapp.com",
-        databaseURL:
-          "https://crud-cb6fb-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "crud-cb6fb",
-        storageBucket: "crud-cb6fb.firebasestorage.app",
-        messagingSenderId: "845920708480",
-        appId: "1:845920708480:web:3eafe4605da974ce188365",
-        measurementId: "G-7XMMBE9T8P",
-      };
-      import {
-        getDatabase,
-        ref,
-        set,
-        get,
-      } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-database.js";
-
-      
-
-      var ID = document.getElementById("enterId");
-      var name = document.getElementById("enterName");
-      var age = document.getElementById("enterAge");
-      var findID = document.getElementById("findID");
-      var findName = document.getElementById("findName");
-      var findAge = document.getElementById("findAge");
-      var Status = document.getElementById("Status");
-
-      var insertBtn = document.getElementById("insert");
-      var insertUpdate = document.getElementById("update");
-      var findBtn = document.getElementById("find");
-      var removeBtn = document.getElementById("remove");
-
-      function showStatus(statusValue) {
-        let pending = document.getElementById("pendingg");
-        let ok = document.getElementById("ok");
-        if (statusValue.value == "true" || statusValue.value == true) {
-          pending.style.display = "block";
-          ok.style.display = "block";
-        } else if (statusValue.value == "false" || statusValue.value == false) {
-          pending.style.display = "block";
-          ok.style.display = "block";
-        }
-      }
-
-      function insertData() {
-        set(ref(db, "People/" + ID.value), {
-          Name: name.value,
-          Id: ID.value,
-          Age: age.value,
-        })
-          .then(() => {
-            alert("Data added successfully!");
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      }
-
-      function insertStatus() {
-        set(ref(db, "People/" + Status), {
-          Status: Staus.value,
-        })
-          .then((Status) => {
-            showStatus(Status);
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      }
-
-      function findData() {
-        const dbref = ref(db);
-        get(child(dbref, "People/" + findID.value))
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              findName.innerHTML = "Name: " + snapshot.val().Name;
-              findAge.innerHTML = "Age: " + snapshot.val().Age;
-            } else {
-              alert("No data found");
-            }
-          })
-          .catch((e) => {
-            alert(e);
-          });
-      }
-      function findDataRealtime() {
-        const userRef = ref(db, "People/" + findID.value);
-
-        onValue(userRef, (snapshot) => {
-          if (snapshot.exists()) {
-            findName.innerHTML = "Name: " + snapshot.val().Name;
-            findAge.innerHTML = "Age: " + snapshot.val().Age;
-          } else {
-            findName.innerHTML = "";
-            findAge.innerHTML = "";
-          }
-        });
-      }
-
-      function findDataRealtemp() {
-        const userRef = ref(db, "People/01");
-        let deg = document.querySelector("#Total-pills");
-        // deg.style.fontSize = "20px";
-
-        onValue(userRef, (snapshot) => {
-          if (snapshot.val) {
-            deg.textContent = snapshot.val().Temp;
-          } else {
-            h1.innerHTML = "";
-          }
-        });
-      }
-
-      findDataRealtemp();
-
-      function updateData() {
-        update(ref(db, "People/" + ID.value), {
-          Name: name.value,
-          Age: age.value,
-          Status: Status.value,
-        })
-          .then(() => {
-            alert("Data updated successfully!");
-          })
-          .catch((e) => {
-            alert(e);
-          });
-      }
-
-      function removdDate() {
-        remove(ref(db, "People/" + ID.value))
-          .then(() => {
-            alert("Data removed!");
-          })
-          .catch((e) => {
-            alert(e);
-          });
-      }
-
-      // findID.addEventListener("input", findDataRealtime);
-      insertBtn.addEventListener("click", insertData);
-      insertUpdate.addEventListener("click", updateData);
-      findBtn.addEventListener("click", findData);
-      removeBtn.addEventListener("click", removdDate);
-      const analytics = getAnalytics(app);
-    </script> -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

@@ -10,7 +10,6 @@ export default defineConfig({
         medic: resolve(__dirname, "medic.html"),
         logs: resolve(__dirname, "logs.html"),
         analytics: resolve(__dirname, "analytics.html"),
-        user: resolve(__dirname, "user.html"),
       },
     },
   },

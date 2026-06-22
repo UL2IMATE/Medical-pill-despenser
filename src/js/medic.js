@@ -39,26 +39,10 @@ function cupsInfo() {
           period: data.hour >= 12 ? "PM" : "AM",
           assignedAt: new Date().toLocaleString() || null,
         });
-
-        //    }
       }
     });
   }
 }
-// function buildTable(data) {
-//   let table = document.getElementById("myTable");
-//   if (!table) return;
-//   table.innerHTML = "";
-//   for (let i = 0; i < data.length; i++) {
-//     const row = `<tr>
-//       <td scope="row">${data[i].Time}</td>
-//       <td scope="row">${data[i].Type}</td>
-//       <td scope="row">${data[i].Cup}</td>
-//       <td scope="row">${data[i].Medication}</td>
-//     </tr>`;
-//     table.innerHTML += row;
-//   }
-// }
 
 const logs = [];
 logs.push();
@@ -68,6 +52,7 @@ const currentDate = document.getElementById("date");
 function SetDate(Datte) {
   const date = new Date();
   let mon = "";
+
   switch (date.getMonth() + 1) {
     case 1:
       mon = "Jan";
@@ -109,8 +94,13 @@ function SetDate(Datte) {
 
   let AmorPm = date.getHours() > 12 ? "PM" : "AM";
   let hour12 = date.getHours() % 12 || 12;
-  Datte.innerHTML = ` ${date.getDate()}, ${mon}. ${hour12}:${date.getMinutes().toString().padStart(2, "0")} ${AmorPm}`;
+
+  Datte.innerHTML = ` ${date.getDate()}, ${mon}. ${hour12}:${date
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")} ${AmorPm}`;
 }
+
 if (currentDate) {
   SetDate(currentDate);
   setInterval(() => {
@@ -159,12 +149,12 @@ function Cup2Status(e) {
   const Cup2Time = document.getElementById("Cup2Time");
   const Cup2 = document.getElementById("Cup-2");
   const Cup2Button = document.getElementById("Cup2Button");
-
   const Cup2Badge = document.getElementById("Cup2Badge");
 
   if (!cup2.Medication) {
     Cup2Badge.classList =
       "text-bg-secondary rounded badge rounded-pill px-3 py-2 mb-3";
+
     Cup2Badge.innerHTML = "Empty";
     Cup2PillName.innerHTML = "-";
     Cup2Remainder.innerHTML = "-";
@@ -195,6 +185,7 @@ function Cup3Status() {
   if (!cup3.Medication) {
     Cup3Badge.classList =
       "text-bg-secondary rounded badge rounded-pill px-3 py-2 mb-3";
+
     Cup3Badge.innerHTML = "Empty";
     Cup3PillName.innerHTML = "-";
     Cup3Remainder.innerHTML = "-";
@@ -225,6 +216,7 @@ function Cup4Status() {
   if (!cup4.Medication) {
     Cup4Badge.classList =
       "text-bg-secondary rounded badge rounded-pill px-3 py-2 mb-3";
+
     Cup4Badge.innerHTML = "Empty";
     Cup4PillName.innerHTML = "-";
     Cup4Remainder.innerHTML = "-";
@@ -289,6 +281,7 @@ function pillNameCup2() {
 
   const oldMedication = cup2.Medication || "";
   const newMedication = PillName.value.trim();
+
   let logType = "";
 
   if (oldMedication === "" && newMedication !== "") {
@@ -322,6 +315,7 @@ function pillNameCup2() {
       alert(error);
     });
 }
+
 function pillNameCup3() {
   const PillName = document.getElementById("Pill3name");
 
@@ -361,6 +355,7 @@ function pillNameCup3() {
       alert(error);
     });
 }
+
 function pillNameCup4() {
   const PillName = document.getElementById("Pill4name");
 
@@ -389,7 +384,7 @@ function pillNameCup4() {
       push(ref(db, "users/Abdelaziz/logs"), {
         Time: now,
         Type: logType,
-        Cup: "cup4  ",
+        Cup: "cup4",
         Medication: newMedication || oldMedication || "-",
         ScheduledTime: `${cup4.hours}:${cup4.minute}${cup4.period}`,
       });
